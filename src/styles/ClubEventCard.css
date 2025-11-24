@@ -1,0 +1,69 @@
+.event-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "Hanken Grotesk";
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tag {
+  background: #eef2ff;
+  color: #374151;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.event-name {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+}
+.club-name {
+  margin: -4px 0 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1f2937;
+  font-size: 14px;
+}
+.meta-item svg {
+  color: var(--muted);
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+.more-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  padding: 6px 10px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  cursor: pointer;
+}

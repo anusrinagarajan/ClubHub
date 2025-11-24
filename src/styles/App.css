@@ -1,0 +1,78 @@
+
+/*
+******************************
+
+Main app .css
+
+******************************
+*/
+
+
+/* font: Hanken Grotesk */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap");
+
+/* 
+selector {
+  positioning
+
+  display: flex
+
+  box model (padding, border, margin)
+
+  other (bg color, color, font family/size/align)
+}
+*/
+
+/* Design tokens */
+:root {
+  --border: #eaeaea;
+  --text: #111827;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --shadow: 0 2px 10px rgba(0,0,0,0.06);
+
+  --topbar-height: 64px;
+  --sidebar-width: 240px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%; 
+}
+
+body {
+  margin: 0;
+  font-family: "Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+
+/* App frame */
+.app {
+  min-height: 100%;
+}
+
+
+/* Content */
+.content {
+  margin-top: var(--topbar-height);
+  padding: 16px;
+  transition: margin-left 200ms ease;
+  min-height: calc(100vh - var(--topbar-height));
+}
+
+.content.with-sidebar {
+  margin-left: var(--sidebar-width);
+}
+
+.content.full {
+  margin-left: 0;
+}
+
+/* Small screens: sidebar overlays; content always full width */
+@media (max-width: 820px) {
+  .content.with-sidebar { margin-left: 0; }
+  .sidebar { width: 84%; box-shadow: var(--shadow); }
+}
