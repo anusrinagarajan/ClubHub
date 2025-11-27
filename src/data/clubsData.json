@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Society of Women Engineers",
+    "description": "Empowering women to pursue careers in engineering.",
+    "categories": ["STEM", "Women", "Engineering"],
+    "image": null
+  },
+  {
+    "id": 2,
+    "name": "Computer Science Society",
+    "description": "A community for students passionate about computer science, programming, and technology. Join us for hackathons, workshops, and networking events with industry professionals.",
+    "categories": ["STEM", "Technology"],
+    "image": null
+  },
+  {
+    "id": 3,
+    "name": "Ethics in Technology Club",
+    "description": "Exploring the intersection of technology and ethics. We discuss AI ethics, data privacy, digital rights, and the social impact of emerging technologies.",
+    "categories": ["Ethics", "STEM", "Philosophy"],
+    "image": null
+  },
+  {
+    "id": 4,
+    "name": "Biomedical Engineering Society",
+    "description": "Bringing together students interested in biomedical engineering, healthcare innovation, and medical device development. Hands-on projects and guest speakers from the industry.",
+    "categories": ["STEM", "Engineering", "Healthcare"],
+    "image": null
+  },
+  {
+    "id": 5,
+    "name": "Women in Business",
+    "description": "Empowering women to succeed in business through mentorship, professional development, and networking opportunities with successful female executives.",
+    "categories": ["Women", "Business", "Leadership"],
+    "image": null
+  },
+  {
+    "id": 6,
+    "name": "Data Science Club",
+    "description": "Learn data analysis, machine learning, and statistical modeling. Work on real-world projects and compete in data science competitions.",
+    "categories": ["STEM", "Technology", "Analytics"],
+    "image": null
+  },
+  {
+    "id": 7,
+    "name": "Philosophy & Ethics Society",
+    "description": "Engage in thoughtful discussions about moral philosophy, ethics, and the big questions of human existence. Weekly seminars and debates.",
+    "categories": ["Ethics", "Philosophy", "Humanities"],
+    "image": null
+  },
+  {
+    "id": 8,
+    "name": "Robotics Club",
+    "description": "Build, program, and compete with robots! Perfect for students interested in mechanical engineering, electrical engineering, and computer science.",
+    "categories": ["STEM", "Engineering", "Technology"],
+    "image": null
+  },
+  {
+    "id": 9,
+    "name": "Women in STEM",
+    "description": "Supporting and celebrating women in science, technology, engineering, and mathematics through community building, mentorship, and advocacy.",
+    "categories": ["Women", "STEM", "Leadership"],
+    "image": null
+  },
+  {
+    "id": 10,
+    "name": "Environmental Ethics Alliance",
+    "description": "Addressing environmental challenges through an ethical lens. Discuss sustainability, climate justice, and our responsibilities to future generations.",
+    "categories": ["Ethics", "Environment", "Activism"],
+    "image": null
+  },
+  {
+    "id": 11,
+    "name": "Mathematics Society",
+    "description": "For math enthusiasts! Explore advanced topics, participate in math competitions, and attend talks by renowned mathematicians.",
+    "categories": ["STEM", "Mathematics"],
+    "image": null
+  },
+  {
+    "id": 12,
+    "name": "Women Leaders Forum",
+    "description": "Developing the next generation of women leaders through workshops, speaker series, and leadership training programs.",
+    "categories": ["Women", "Leadership", "Business"],
+    "image": null
+  }
+]
