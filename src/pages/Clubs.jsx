@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Search, X, Check } from "lucide-react";
-import clubsData from "./data/clubsData.json";
-import svgPaths from "./imports/svg-s8131oafzg";
+import clubsData from "../data/clubsData.json";
+import svgPaths from "../imports/svg-s8131oafzg";
 
-import "./styles/Clubs.css";
-import useClickOutside from "./utilityfunctions/useClickOutside"
+import "../styles/Clubs.css";
+import useClickOutside from "../utilityfunctions/useClickOutside"
 
 function StarIcon({ filled, onClick }) {
   return (

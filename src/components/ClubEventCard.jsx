@@ -1,37 +1,19 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 import { CalendarDays, MapPin, Clock, MoreHorizontal } from "lucide-react";
 import "../styles/ClubEventCard.css";
+
+import formatEventTime from "../utilityfunctions/formatEventTime"
+import formatEventDate from "../utilityfunctions/formatEventDate"
 
 export default function ClubEventCard({ event }) {
   
   // formatting date string
-  const date = new Date(event.start_time);
-  const dateString = date.toLocaleDateString(undefined, {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
+  const dateString = formatEventDate(event.start_time)
 
   // formatting time string
   const event_time = formatEventTime(event.start_time, event.end_time);
-  function formatEventTime(start_time, end_time) {
-    function format(dateStr) {
-      const d = new Date(dateStr);
-      let hours = d.getHours();
-      const minutes = d.getMinutes();
-      const ampm = hours >= 12 ? "pm" : "am";
-
-      hours = hours % 12;
-      if (hours === 0) hours = 12;
-
-      return `${hours}:${minutes.toString().padStart(2, "0")}${ampm}`;
-    }
-
-  const start = format(start_time);
-  const end = format(end_time);
-
-  return `${start}-${end}`;
-}
 
   return (
     <article className="event-card" role="article">
@@ -65,10 +47,12 @@ export default function ClubEventCard({ event }) {
         </div>
 
         <div className="card-actions">
-          <button className="more-btn">
+          <Link to={`/events/${event.eid}`}>
+            <button className="more-btn">
             <MoreHorizontal size={18} />
             <span>More</span>
           </button>
+          </Link>
         </div>
       </div>
     </article>

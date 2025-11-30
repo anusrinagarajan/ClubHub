@@ -1,13 +1,15 @@
 import React, { useMemo, useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, X, Check } from "lucide-react";
 
-import eventsData from "./data/sampleEventsData.json";
-import ClubEventCard from "./components/ClubEventCard";
-import MultiSelect from "./components/MultipleSelect";
-import SingleSelect from "./components/SingleSelect";
+// replace w/ all event data as objects, same form as .json
+import eventsData from "../data/sampleEventsData.json";
 
-import "./styles/Events.css";
-import useClickOutside from "./utilityfunctions/useClickOutside"
+import ClubEventCard from "../components/ClubEventCard";
+import MultiSelect from "../components/MultipleSelect";
+import SingleSelect from "../components/SingleSelect";
+
+import "../styles/Events.css";
+import useClickOutside from "../utilityfunctions/useClickOutside"
 
 function Events() {
 

@@ -76,3 +76,8 @@ body {
   .content.with-sidebar { margin-left: 0; }
   .sidebar { width: 84%; box-shadow: var(--shadow); }
 }
+
+/* react-router link */
+.invis-link {
+  text-decoration: none;
+}

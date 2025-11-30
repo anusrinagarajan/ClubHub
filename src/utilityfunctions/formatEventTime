@@ -1,0 +1,20 @@
+function formatEventTime(start_time, end_time) {
+    function format(dateStr) {
+      const d = new Date(dateStr);
+      let hours = d.getHours();
+      const minutes = d.getMinutes();
+      const ampm = hours >= 12 ? "pm" : "am";
+
+      hours = hours % 12;
+      if (hours === 0) hours = 12;
+
+      return `${hours}:${minutes.toString().padStart(2, "0")}${ampm}`;
+    }
+
+    const start = format(start_time);
+    const end = format(end_time);
+
+    return `${start}-${end}`;
+}
+
+export default formatEventTime;

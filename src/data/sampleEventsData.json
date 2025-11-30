@@ -7,7 +7,8 @@
     "end_time": "2025-03-03T17:00:00",
     "flyer_url": "https://plus.unsplash.com/premium_photo-1663089622154-d7953779f99b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Student Union • Room 2B",
-    "event_tags": ["STEM", "Workshop"]
+    "event_tags": ["STEM", "Workshop"],
+    "description": "Learn the basics of robotics through a hands-on workshop led by engineering students."
   },
   {
     "eid": "e2",
@@ -17,7 +18,8 @@
     "end_time": "2025-03-01T19:30:00",
     "flyer_url": "https://plus.unsplash.com/premium_photo-1664298664329-ddac074931d9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Library Conference Hall",
-    "event_tags": ["Ethics", "STEM"]
+    "event_tags": ["Ethics", "STEM"],
+    "description": "Join an interdisciplinary conversation exploring the ethical challenges posed by modern AI systems."
   },
   {
     "eid": "e3",
@@ -27,7 +29,8 @@
     "end_time": "2025-03-07T19:00:00",
     "flyer_url": "https://plus.unsplash.com/premium_photo-1682088318236-8c4958076b34?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Student Union • Room 3A",
-    "event_tags": ["Women", "Networking", "STEM"]
+    "event_tags": ["Women", "Networking", "STEM"],
+    "description": "Connect with fellow women in tech, share experiences, and build your professional network."
   },
   {
     "eid": "e4",
@@ -37,7 +40,8 @@
     "end_time": "2025-03-10T21:00:00",
     "flyer_url": "https://plus.unsplash.com/premium_photo-1663091699742-70ca6f835197?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Main Auditorium",
-    "event_tags": ["Social"]
+    "event_tags": ["Social"],
+    "description": "Meet dozens of student organizations, enjoy performances, and discover new ways to get involved on campus."
   },
   {
     "eid": "e5",
@@ -47,7 +51,8 @@
     "end_time": "2025-03-05T13:00:00",
     "flyer_url": "https://plus.unsplash.com/premium_photo-1663040368470-02fb3f5847c1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Science Center 201",
-    "event_tags": ["Ethics", "Health"]
+    "event_tags": ["Ethics", "Health"],
+    "description": "Discuss recent research articles on medical ethics in a collaborative, seminar-style format."
   },
   {
     "eid": "e6",
@@ -57,7 +62,8 @@
     "end_time": "2025-02-28T18:00:00",
     "flyer_url": "https://plus.unsplash.com/premium_photo-1663045906368-69481b046d66?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Tech Lab",
-    "event_tags": ["STEM", "Competition"]
+    "event_tags": ["STEM", "Competition"],
+    "description": "Test your hacking and problem-solving skills in a friendly cybersecurity competition."
   },
   {
     "eid": "e7",
@@ -67,7 +73,8 @@
     "end_time": "2025-03-02T16:30:00",
     "flyer_url": "https://plus.unsplash.com/premium_photo-1664301969414-d8435c2b91bb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Design Studio",
-    "event_tags": ["Design", "Women"]
+    "event_tags": ["Design", "Women"],
+    "description": "Explore design strategies that make products more accessible, inclusive, and user-friendly."
   },
   {
     "eid": "e8",
@@ -77,6 +84,18 @@
     "end_time": "2025-03-12T22:00:00",
     "flyer_url": "https://images.unsplash.com/photo-1717228359912-e2f6401df18f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "location": "Observatory",
-    "event_tags": ["STEM", "Social"]
+    "event_tags": ["STEM", "Social"],
+    "description": "Enjoy stargazing, telescope demos, and discussions about the night sky with fellow astronomy enthusiasts."
+  },
+  {
+    "eid": "e9",
+    "event_name": "goofy",
+    "club_name": "goo club",
+    "start_time": "2025-03-12T20:00:00",
+    "end_time": "2025-03-12T22:00:00",
+    "flyer_url": "",
+    "location": "??",
+    "event_tags": ["Gaming", "Food"],
+    "description": "kekw longgggggggggggggggggggg description longgggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg description kekw longgggggggggggggggggggg description longgggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionkekw longgggggggggggggggggggg description longgggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg descriptionlonggggggggggggggggggggg description"
   }
 ]

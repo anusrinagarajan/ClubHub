@@ -18,7 +18,7 @@ function Layout() {
         <nav className="nav">
 
           {/*Events Navigation Button*/}
-          <Link to="/events" className="nav-link">
+          <Link to="/events" className="invis-link">
             <button className="nav-item">
               <Calendar className="nav-icon calendar"/>
               <span>Events</span>
@@ -26,7 +26,7 @@ function Layout() {
           </Link>
 
           {/*Clubs Navigation Button*/}
-          <Link to="/clubs" className="nav-link">
+          <Link to="/clubs" className="invis-link">
             <button className="nav-item">
               <Users className="nav-icon clubs"/>
               <span>Clubs</span>
@@ -45,7 +45,7 @@ function Layout() {
           <button className="icon-btn" onClick={() => setIsSidebarOpen((v) => !v)}>
             <Menu />
           </button>
-          <div className="brand">ClubNav</div>
+          <Link to="/events" className="brand invis-link"><div>ClubNav</div></Link>
         </div>
 
         {/* User Info */}
