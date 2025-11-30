@@ -1,7 +1,8 @@
 # ClubNav
 ## Change Log
-- Sunday, 11/23/25: Added navigation + routing; Created events page
-- Thursday, 11/27/25: Created clubs list page (clubsData.json, Clubs.css, Clubs.jsx, imports folder)
+- Y - Sunday, 11/23/25: Added navigation + routing; Created events page
+- A - Thursday, 11/27/25: Created clubs list page (clubsData.json, Clubs.css, Clubs.jsx, imports folder)
+- Y - Saturday, 11/30/25: Created individual events page + added photos to events, refactored project structure for readability
 
 ## Getting Started
 1. Install dependencies
