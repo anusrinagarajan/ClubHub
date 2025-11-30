@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Layout } from "./Layout.jsx"
 import { Clubs } from "./Clubs.jsx"
-import { Events } from "./Events.jsx" //ignore error, functionally fine
+import { Events } from "./Events.jsx"
 
 function App() {
 

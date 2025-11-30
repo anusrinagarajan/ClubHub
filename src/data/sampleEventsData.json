@@ -1,0 +1,82 @@
+[
+  {
+    "eid": "e1",
+    "event_name": "Intro to Robotics",
+    "club_name": "Engineering Society",
+    "start_time": "2025-03-03T16:00:00",
+    "end_time": "2025-03-03T17:00:00",
+    "flyer_url": "https://plus.unsplash.com/premium_photo-1663089622154-d7953779f99b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Student Union • Room 2B",
+    "event_tags": ["STEM", "Workshop"]
+  },
+  {
+    "eid": "e2",
+    "event_name": "Ethics in AI Roundtable",
+    "club_name": "Philosophy & CS",
+    "start_time": "2025-03-01T18:00:00",
+    "end_time": "2025-03-01T19:30:00",
+    "flyer_url": "https://plus.unsplash.com/premium_photo-1664298664329-ddac074931d9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Library Conference Hall",
+    "event_tags": ["Ethics", "STEM"]
+  },
+  {
+    "eid": "e3",
+    "event_name": "Women in Tech Meetup",
+    "club_name": "WiT",
+    "start_time": "2025-03-07T17:30:00",
+    "end_time": "2025-03-07T19:00:00",
+    "flyer_url": "https://plus.unsplash.com/premium_photo-1682088318236-8c4958076b34?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Student Union • Room 3A",
+    "event_tags": ["Women", "Networking", "STEM"]
+  },
+  {
+    "eid": "e4",
+    "event_name": "Club Showcase Night",
+    "club_name": "Campus Life",
+    "start_time": "2025-03-10T19:00:00",
+    "end_time": "2025-03-10T21:00:00",
+    "flyer_url": "https://plus.unsplash.com/premium_photo-1663091699742-70ca6f835197?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Main Auditorium",
+    "event_tags": ["Social"]
+  },
+  {
+    "eid": "e5",
+    "event_name": "Bioethics Journal Club",
+    "club_name": "Pre-Med Society",
+    "start_time": "2025-03-05T12:00:00",
+    "end_time": "2025-03-05T13:00:00",
+    "flyer_url": "https://plus.unsplash.com/premium_photo-1663040368470-02fb3f5847c1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Science Center 201",
+    "event_tags": ["Ethics", "Health"]
+  },
+  {
+    "eid": "e6",
+    "event_name": "Cybersecurity Capture the Flag",
+    "club_name": "Security Club",
+    "start_time": "2025-02-28T14:00:00",
+    "end_time": "2025-02-28T18:00:00",
+    "flyer_url": "https://plus.unsplash.com/premium_photo-1663045906368-69481b046d66?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Tech Lab",
+    "event_tags": ["STEM", "Competition"]
+  },
+  {
+    "eid": "e7",
+    "event_name": "Designing Inclusive Products",
+    "club_name": "HCI Group",
+    "start_time": "2025-03-02T15:00:00",
+    "end_time": "2025-03-02T16:30:00",
+    "flyer_url": "https://plus.unsplash.com/premium_photo-1664301969414-d8435c2b91bb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Design Studio",
+    "event_tags": ["Design", "Women"]
+  },
+  {
+    "eid": "e8",
+    "event_name": "Astronomy Night",
+    "club_name": "Astro Club",
+    "start_time": "2025-03-12T20:00:00",
+    "end_time": "2025-03-12T22:00:00",
+    "flyer_url": "https://images.unsplash.com/photo-1717228359912-e2f6401df18f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Observatory",
+    "event_tags": ["STEM", "Social"]
+  }
+]

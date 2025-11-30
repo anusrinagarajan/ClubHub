@@ -1,0 +1,19 @@
+import React, { useEffect } from "react";
+/**
+ * Utility - Click-outside hook for closing popovers
+ * 
+ * - `ref`: references popup element
+ * - `onOutside`: function to run that closes popup IF click was outside of popup
+ */
+export default function useClickOutside(ref, onOutside) {
+  useEffect(() => { //use to prevent multiple/unused EventListeners when component (popup) unmounts
+
+    function handleClick(e) {
+      if (ref.current && !ref.current.contains(e.target)) onOutside(); //onOutside - function to close popup
+    }
+    
+    document.addEventListener("mousedown", handleClick); //calls handleClick upon click ANYWHERE
+
+    return () => document.removeEventListener("mousedown", handleClick); //cleanup function - prevent duplicate EventListeners,
+  }, [ref, onOutside]);                                                  //resource leaks
+}

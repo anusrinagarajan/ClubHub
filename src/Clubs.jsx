@@ -4,19 +4,7 @@ import clubsData from "./data/clubsData.json";
 import svgPaths from "./imports/svg-s8131oafzg";
 
 import "./styles/Clubs.css";
-
-/**
- * Utility - Click-outside hook for closing popovers
- */
-function useClickOutside(ref, onOutside) {
-  useEffect(() => {
-    function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) onOutside();
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [ref, onOutside]);
-}
+import useClickOutside from "./utilityfunctions/useClickOutside"
 
 function StarIcon({ filled, onClick }) {
   return (

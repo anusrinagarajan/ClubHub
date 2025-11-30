@@ -1,168 +1,31 @@
 import React, { useMemo, useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, X, Check } from "lucide-react";
 
-import eventsData from "./data/eventsData.json";
+import eventsData from "./data/sampleEventsData.json";
 import ClubEventCard from "./components/ClubEventCard";
+import MultiSelect from "./components/MultipleSelect";
+import SingleSelect from "./components/SingleSelect";
 
 import "./styles/Events.css";
-
-/**
- * Utility - Click-outside hook for closing popovers
- * 
- * - `ref`: references popup element
- * - `onOutside`: function to run that closes popup IF click was outside of popup
- */
-function useClickOutside(ref, onOutside) {
-  useEffect(() => { //use to prevent multiple/unused EventListeners when component (popup) unmounts
-
-    function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) onOutside(); //onOutside - function to close popup
-    }
-    
-    document.addEventListener("mousedown", handleClick); //calls handleClick upon click ANYWHERE
-
-    return () => document.removeEventListener("mousedown", handleClick); //cleanup function - prevent duplicate EventListeners,
-  }, [ref, onOutside]);                                                  //resource leaks
-}
-
-/**
- * MultiSelect dropdown (checkbox list)
- * - `options`: array of strings
- * - `selected`: Set<string>
- * - `onChange`: (newSet: Set<string>) => void
- * - `label`: string for the trigger button
- */
-function MultiSelect({ options, selected, onChange, label }) {
-  const [open, setOpen] = useState(false);
-  const popRef = useRef(null);
-  useClickOutside(popRef, () => setOpen(false));
-
-  const toggle = (opt) => {
-    const next = new Set(selected);
-    if (next.has(opt)) next.delete(opt);
-    else next.add(opt);
-    onChange(next);
-  };
-
-  const clearAll = (e) => {
-    e.stopPropagation();
-    onChange(new Set());
-  };
-
-  const selectedCount = selected.size;
-
-  return (
-    <div className="filter">
-      <button className="filter-trigger" onClick={() => setOpen((v) => !v)}>
-        <span>{label}</span>
-        {selectedCount > 0 && <span className="badge">{selectedCount}</span>}
-        <ChevronDown className="chev" size={16} />
-      </button>
-
-      {open && (
-        <div className="popover" ref={popRef}>
-          <div className="popover-header">
-            <input
-              className="popover-search"
-              placeholder="Search…"
-              onChange={(e) => {
-                const q = e.target.value.toLowerCase();
-                const items = [...popRef.current.querySelectorAll("[data-opt]")];
-                items.forEach((el) => {
-                  const show = el.dataset.opt.toLowerCase().includes(q);
-                  el.style.display = show ? "flex" : "none";
-                });
-              }}
-            />
-            <button className="clear-btn" onClick={clearAll} title="Clear">
-              <X size={16} />
-            </button>
-          </div>
-
-          <div className="options">
-            {options.map((opt) => {
-              const isChecked = selected.has(opt);
-              return (
-                <label className="option" key={opt} data-opt={opt}>
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={() => toggle(opt)}
-                  />
-                  <span className={`checkbox ${isChecked ? "on" : ""}`}>
-                    {isChecked && <Check size={14} />}
-                  </span>
-                  <span className="option-label">{opt}</span>
-                </label>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-/**
- * SingleSelect dropdown (radio list) for Order By
- */
-function SingleSelect({ label, value, options, onChange }) {
-  const [open, setOpen] = useState(false);
-  const popRef = useRef(null);
-  useClickOutside(popRef, () => setOpen(false));
-
-  const current = options.find((o) => o.value === value);
-
-  return (
-    <div className="filter">
-      <button className="filter-trigger" onClick={() => setOpen((v) => !v)}>
-        <span>{label}</span>
-        <span className="muted">{current?.label}</span>
-        <ChevronDown className="chev" size={16} />
-      </button>
-
-      {open && (
-        <div className="popover" ref={popRef}>
-          <div className="options">
-            {options.map((opt) => (
-              <label className="option" key={opt.value}>
-                <input
-                  type="radio"
-                  name="orderby"
-                  checked={value === opt.value}
-                  onChange={() => {
-                    onChange(opt.value);
-                    setOpen(false);
-                  }}
-                />
-                <span className={`radio ${value === opt.value ? "on" : ""}`}>
-                  {value === opt.value && <Check size={14} />}
-                </span>
-                <span className="option-label">{opt.label}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+import useClickOutside from "./utilityfunctions/useClickOutside"
 
 function Events() {
-  // ---------- Sample data (JSON) -> unique facets ----------
-  const allCategories = useMemo(() => {
+
+  // Unique set of categories derived from data, ordered in ascending alphabetical order
+  const allEventTags = useMemo(() => {
     const s = new Set();
-    eventsData.forEach((e) => e.categories.forEach((c) => s.add(c)));
+    eventsData.forEach((e) => e.event_tags.forEach((c) => s.add(c)));
     return [...s].sort((a, b) => a.localeCompare(b));
   }, []);
 
+  // Unique set of locations derived from data, ordered in ascending alphabetical order
   const allLocations = useMemo(() => {
     const s = new Set(eventsData.map((e) => e.location));
     return [...s].sort((a, b) => a.localeCompare(b));
   }, []);
 
   // ---------- State ----------
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("");                  // searched text
   const [catSel, setCatSel] = useState(new Set());         // multi
   const [locSel, setLocSel] = useState(new Set());         // multi
   const [orderBy, setOrderBy] = useState("date-asc");      // single
@@ -171,11 +34,12 @@ function Events() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
 
+    // filter function
     const pass = (ev) => {
-      const byName = !q || ev.name.toLowerCase().includes(q);
+      const byName = !q || ev.event_name.toLowerCase().includes(q);
 
       const byCats =
-        catSel.size === 0 || ev.categories.some((c) => catSel.has(c));
+        catSel.size === 0 || ev.event_tags.some((c) => catSel.has(c));
 
       const byLocs = locSel.size === 0 || locSel.has(ev.location);
 
@@ -184,12 +48,12 @@ function Events() {
 
     const list = eventsData.filter(pass);
 
-    // Sorting
+    // sorting comparison
     const compare = {
-      "date-asc": (a, b) => new Date(a.date) - new Date(b.date),
-      "date-desc": (a, b) => new Date(b.date) - new Date(a.date),
-      "name-asc": (a, b) => a.name.localeCompare(b.name),
-      "name-desc": (a, b) => b.name.localeCompare(a.name),
+      "date-asc": (a, b) => new Date(a.start_time) - new Date(b.start_time),
+      "date-desc": (a, b) => new Date(b.start_time) - new Date(a.start_time),
+      "name-asc": (a, b) => a.event_name.localeCompare(b.event_name),
+      "name-desc": (a, b) => b.event_name.localeCompare(a.event_name),
     }[orderBy];
 
     return [...list].sort(compare);
@@ -209,10 +73,12 @@ function Events() {
         <p className="subtitle">
           Discover hundreds of upcoming events on campus
         </p>
-        <div className="cta-row">
+
+        {/* filtering by favorites - commented out for now */}
+        {/* <div className="cta-row">
           <button className="seg-btn on">Browse All Events</button>
           <button className="seg-btn">Favorited Clubs</button>
-        </div>
+        </div> */}
       </div>
 
       <div className="filters-row">
@@ -227,9 +93,10 @@ function Events() {
           />
         </div>
 
-        {/* Categories (multi) */}
+        {/* Event Tags (multi) */}
         <MultiSelect
-          options={allCategories}
+          useClickOutside={useClickOutside}
+          options={allEventTags}
           selected={catSel}
           onChange={setCatSel}
           label="Categories"
@@ -237,6 +104,7 @@ function Events() {
 
         {/* Order By (single) */}
         <SingleSelect
+          useClickOutside={useClickOutside}
           label="Order By"
           value={orderBy}
           options={orderOptions}
@@ -245,6 +113,7 @@ function Events() {
 
         {/* Location (multi) */}
         <MultiSelect
+          useClickOutside={useClickOutside}
           options={allLocations}
           selected={locSel}
           onChange={setLocSel}
@@ -255,7 +124,7 @@ function Events() {
       {/* Cards grid */}
       <div className="grid">
         {filtered.map((ev) => (
-          <ClubEventCard key={ev.id} event={ev} />
+          <ClubEventCard key={ev.eid} event={ev} />
         ))}
 
         {filtered.length === 0 && (
