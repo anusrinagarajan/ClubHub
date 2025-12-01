@@ -1,0 +1,81 @@
+/* Center the login card */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f2f2f2;
+}
+
+/* Card size */
+.auth-card {
+  background: white;
+  padding: 60px;
+  width: 520px;          /* wider card */
+  border-radius: 22px;   /* rounder */
+  box-shadow: 0 8px 50px rgba(0,0,0,0.09);
+}
+
+.auth-card.large {
+  width: 580px;          /* <--- larger size */
+  padding: 72px;         /* <--- more space */
+}
+
+/* Title */
+.auth-title {
+  font-size: 48px;       /* <--- MUCH bigger */
+  font-weight: 700;
+  margin-bottom: 40px;
+  line-height: 1.15;
+}
+
+/* Form layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;             /* <--- more spacing */
+}
+
+/* Inputs */
+.auth-input {
+  width: 100%;
+  padding: 18px 20px;    /* <--- larger input box */
+  border-radius: 14px;   /* rounder */
+  border: 2px solid #ddd;
+  font-size: 20px;       /* <--- bigger text */
+  outline: none;
+}
+
+.auth-input:focus {
+  border-color: black;
+}
+
+/* Text before button */
+.auth-text {
+  font-size: 18px;
+  color: #444;
+}
+
+.auth-link {
+  color: black;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Button */
+.auth-button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 20px;         /* <--- BIGGER button */
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 16px;   /* rounder */
+  font-size: 22px;       /* <--- bigger text */
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.auth-button:hover {
+  opacity: 0.85;
+}
