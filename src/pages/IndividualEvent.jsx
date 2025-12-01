@@ -3,7 +3,7 @@ import "../styles/IndividualEvent.css";
 import { Clock, MapPin } from "lucide-react";
 
 import { Link, useParams } from 'react-router-dom';
-import eventsData from "../data/sampleEventsData.json";
+// import eventsData from "../data/sampleEventsData.json";
 
 import { BackButton } from "../components/BackButton";
 
@@ -18,13 +18,31 @@ const IndividualEvent = () => {
 
   const { eid } = useParams(); //retrieves object, keys = url params
     
+  const [event, setEvent] = useState({});
+
+  // Fetch from backend
+  useEffect(() => {
+    const loadEventData = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/individual-event?eid=${eid}`);
+        const data = await res.json();
+        console.log("Loaded events:", data);
+        setEvent(data[0]);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+
+    loadEventData();
+  }, []);
+
   /* replace with data for this single event from db */
   /* same format as json - single object, matching eid as param */
   // note: differences: also imports club image, club id -> for learn more button
-  function getEventById(events, eid) {
-    return events.find(event => event.eid === eid) || null;
-  }
-  const event = getEventById(eventsData, eid);
+  // function getEventById(events, eid) {
+  //   return events.find(event => event.eid === eid) || null;
+  // }
+  // const event = getEventById(eventsData, eid);
 
   const dateText = formatEventDate(event.start_time);
   const timeText = formatEventTime(event.start_time, event.end_time);
@@ -66,12 +84,12 @@ const IndividualEvent = () => {
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, [event?.description]);
+  }, [event]);
 
   // scroll to top on nav
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  })
+  }, [])
 
   if (!event) return null;
 

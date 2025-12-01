@@ -36,6 +36,22 @@ function IndividualClub() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  // Fetch from backend
+  useEffect(() => {
+    const loadEventData = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/api/individual-club?cid=${cid}`);
+        const data = await res.json();
+        console.log("Loaded club:", data);
+        setClub(data[0]);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+
+    loadEventData();
+  }, []);
+
   if (!club) {
     return (
       <div className="individual-club-page">

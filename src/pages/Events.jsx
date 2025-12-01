@@ -2,7 +2,7 @@ import React, { useMemo, useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, X, Check } from "lucide-react";
 
 // replace w/ all event data as objects, same form as .json
-import eventsData from "../data/sampleEventsData.json";
+import ogEventsData from "../data/sampleEventsData.json";
 
 import { ClubEventCard } from "../components/ClubEventCard";
 import MultiSelect from "../components/MultipleSelect";
@@ -13,23 +13,41 @@ import useClickOutside from "../utilityfunctions/useClickOutside"
 
 function Events() {
 
-  // scroll to top on nav
+  const [eventsData, setEventsData] = useState([]);
+
+  // Fetch from backend
+  useEffect(() => {
+    const loadEvents = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/events");
+        const data = await res.json();
+        console.log("Loaded events:", data);
+        setEventsData(data);
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+
+    loadEvents();
+  }, []);
+
+  // Scroll to top on nav
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  })
+  }, [])
 
   // Unique set of categories derived from data, ordered in ascending alphabetical order
   const allEventTags = useMemo(() => {
     const s = new Set();
     eventsData.forEach((e) => e.event_tags.forEach((c) => s.add(c)));
     return [...s].sort((a, b) => a.localeCompare(b));
-  }, []);
+  }, [eventsData]);
 
   // Unique set of locations derived from data, ordered in ascending alphabetical order
   const allLocations = useMemo(() => {
     const s = new Set(eventsData.map((e) => e.location));
     return [...s].sort((a, b) => a.localeCompare(b));
-  }, []);
+  }, [eventsData]);
 
   // ---------- State ----------
   const [query, setQuery] = useState("");                  // searched text
@@ -64,7 +82,7 @@ function Events() {
     }[orderBy];
 
     return [...list].sort(compare);
-  }, [query, catSel, locSel, orderBy]);
+  }, [eventsData, query, catSel, locSel, orderBy]);
 
   const orderOptions = [
     { value: "date-asc", label: "Date (Earliest)" },

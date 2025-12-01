@@ -3,7 +3,7 @@ import { Search, X, Check } from "lucide-react";
 import { Link } from 'react-router-dom';
 
 // replace with data fetched from back
-import clubsData from "../data/sampleClubsData.json";
+// import clubsData from "../data/sampleClubsData.json";
 
 
 import svgPaths from "../imports/svg-s8131oafzg";
@@ -86,10 +86,24 @@ function Clubs() {
   const [selectedCategories, setSelectedCategories] = useState(new Set());
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showCategoryPopup, setShowCategoryPopup] = useState(false);
-  const [clubs, setClubs] = useState(
-    clubsData.map((club) => ({ ...club, favorited: false }))
-  );
-  
+  const [clubsData, setClubsData] = useState([]);
+
+  // Fetch from backend
+  useEffect(() => {
+    const loadClubs = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/clubs");
+        const data = await res.json();
+        console.log("Loaded events:", data);
+        setClubsData(data.map((club) => ({ ...club, favorited: false })));
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      }
+    };
+
+    loadClubs();
+  }, []);
+
   // scroll to top on nav
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -109,7 +123,7 @@ function Clubs() {
 
   // Toggle favorite status
   const toggleFavorite = (clubId) => {
-    setClubs((prev) =>
+    setClubsData((prev) =>
       prev.map((club) =>
         club.id === clubId ? { ...club, favorited: !club.favorited } : club
       )
@@ -118,7 +132,7 @@ function Clubs() {
 
   // Remove from favorites
   const removeFavorite = (clubId) => {
-    setClubs((prev) =>
+    setClubsData((prev) =>
       prev.map((club) =>
         club.id === clubId ? { ...club, favorited: false } : club
       )
@@ -138,7 +152,7 @@ function Clubs() {
 
   // Filtered clubs
   const filteredClubs = useMemo(() => {
-    return clubs.filter((club) => {
+    return clubsData.filter((club) => {
       // Search filter
       const matchesSearch =
         searchQuery.trim() === "" ||
@@ -155,12 +169,12 @@ function Clubs() {
 
       return matchesSearch && matchesCategories && matchesFavorites;
     });
-  }, [clubs, searchQuery, selectedCategories, showFavoritesOnly]);
+  }, [clubsData, searchQuery, selectedCategories, showFavoritesOnly]);
 
   // Get favorited clubs
   const favoritedClubs = useMemo(() => {
-    return clubs.filter((club) => club.favorited);
-  }, [clubs]);
+    return clubsData.filter((club) => club.favorited);
+  }, [clubsData]);
 
   // Visible selected filters (show first 3)
   const selectedCategoriesArray = [...selectedCategories];
