@@ -4,12 +4,6 @@
   margin: 0 15vw;
 }
 
-.content.with-sidebar {
-  .events-page {
-    margin: 0 7.5vw;
-  }
-}
-
 .intro {
   margin-bottom: 16px;
 }
@@ -81,6 +75,7 @@
 .filter-trigger {
   width: 100%;
   display: inline-flex;
+  height: 5vh;
   align-items: center;
   justify-content: space-between;
   gap: 8px;

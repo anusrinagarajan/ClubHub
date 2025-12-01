@@ -1,6 +1,11 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Search, X, Check } from "lucide-react";
-import clubsData from "../data/clubsData.json";
+import { Link } from 'react-router-dom';
+
+// replace with data fetched from back
+import clubsData from "../data/sampleClubsData.json";
+
+
 import svgPaths from "../imports/svg-s8131oafzg";
 
 import "../styles/Clubs.css";
@@ -29,14 +34,22 @@ function ClubCard({ club, onToggleFavorite }) {
 
   return (
     <div className="club-card">
-      <div className="club-card-image-placeholder" />
+      <div className="club-card-image-placeholder">
+        <Link to={`${club.id}`} className="invis-link">
+          <img src={club.image} />
+        </Link>
+      </div>
       <div className="club-card-content">
         <StarIcon
           filled={club.favorited}
           onClick={() => onToggleFavorite(club.id)}
         />
-        <h3 className="club-card-title">{club.name}</h3>
-        <p className="club-card-description">{club.description}</p>
+        <Link to={`${club.id}`} className="invis-link">
+          <h3 className="club-card-title">{club.club_name}</h3>
+        </Link>
+        <Link to={`${club.id}`} className="invis-link">
+          <p className="club-card-description">{club.description}</p>
+        </Link>
         <div className="club-card-tags">
           {visibleTags.map((tag, idx) => (
             <span key={idx} className="tag">
@@ -55,8 +68,12 @@ function ClubCard({ club, onToggleFavorite }) {
 function FavoriteClubItem({ club, onRemove }) {
   return (
     <div className="favorite-club-item">
-      <div className="favorite-club-placeholder" />
-      <p className="favorite-club-name">{club.name}</p>
+      <Link to={`${club.id}`} key={club.id} className="invis-link">
+        <div className="favorite-club-placeholder" />
+      </Link>
+      <Link to={`${club.id}`} key={club.id} className="invis-link">
+        <p className="favorite-club-name">{club.club_name}</p>
+      </Link>
       <button className="favorite-remove-btn" onClick={() => onRemove(club.id)}>
         Remove
       </button>
@@ -73,6 +90,11 @@ function Clubs() {
     clubsData.map((club) => ({ ...club, favorited: false }))
   );
   
+  // scroll to top on nav
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [])
+
   const popupRef = useRef(null);
   useClickOutside(popupRef, () => setShowCategoryPopup(false));
 
@@ -120,7 +142,7 @@ function Clubs() {
       // Search filter
       const matchesSearch =
         searchQuery.trim() === "" ||
-        club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        club.club_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         club.description.toLowerCase().includes(searchQuery.toLowerCase());
 
       // Category filter

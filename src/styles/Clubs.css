@@ -276,10 +276,20 @@
 /* Image placeholder */
 .club-card-image-placeholder {
   width: 213px;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   flex-shrink: 0;
+}
+
+.club-card-image-placeholder img {
+  width: 110%;
+  height: 100%;
+  object-fit: cover;
+
+  /* Fade out to the right */
+  mask-image: linear-gradient(to right, black 20%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 20%, transparent 100%);
 }
 
 .club-card-content {

@@ -7,7 +7,7 @@ import "../styles/ClubEventCard.css";
 import formatEventTime from "../utilityfunctions/formatEventTime"
 import formatEventDate from "../utilityfunctions/formatEventDate"
 
-export default function ClubEventCard({ event }) {
+function ClubEventCard({ event }) {
   
   // formatting date string
   const dateString = formatEventDate(event.start_time)
@@ -17,7 +17,11 @@ export default function ClubEventCard({ event }) {
 
   return (
     <article className="event-card" role="article">
-      <img src={event.flyer_url} className="event-img" />
+      {event.flyer_url ? 
+        (<img src={event.flyer_url} className="event-img" />)
+        :
+        (<div className="event-img-placeholder" />)
+      }
 
       <div className="event-content">
         <div className="tags">
@@ -29,7 +33,7 @@ export default function ClubEventCard({ event }) {
         </div>
 
         <h3 className="event-name">{event.event_name}</h3>
-        <p className="club-name">{event.club_name}</p>
+        <p className="event-club-name">{event.club_name}</p>
 
         <div className="meta">
           <div className="meta-item">
@@ -58,3 +62,5 @@ export default function ClubEventCard({ event }) {
     </article>
   );
 }
+
+export { ClubEventCard };

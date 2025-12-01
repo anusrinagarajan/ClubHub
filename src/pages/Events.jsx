@@ -4,7 +4,7 @@ import { Search, ChevronDown, X, Check } from "lucide-react";
 // replace w/ all event data as objects, same form as .json
 import eventsData from "../data/sampleEventsData.json";
 
-import ClubEventCard from "../components/ClubEventCard";
+import { ClubEventCard } from "../components/ClubEventCard";
 import MultiSelect from "../components/MultipleSelect";
 import SingleSelect from "../components/SingleSelect";
 
@@ -12,6 +12,11 @@ import "../styles/Events.css";
 import useClickOutside from "../utilityfunctions/useClickOutside"
 
 function Events() {
+
+  // scroll to top on nav
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  })
 
   // Unique set of categories derived from data, ordered in ascending alphabetical order
   const allEventTags = useMemo(() => {

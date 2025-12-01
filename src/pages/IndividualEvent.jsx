@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/IndividualEvent.css";
-import { ArrowLeft, Clock, MapPin } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
 
 import { Link, useParams } from 'react-router-dom';
 import eventsData from "../data/sampleEventsData.json";
 
+import { BackButton } from "../components/BackButton";
+
 import formatEventDate from "../utilityFunctions/formatEventDate";
 import formatEventTime from "../utilityFunctions/formatEventTime";
 
-const IndividualEvent = ({ onBack, onLearnMore }) => {
+const IndividualEvent = () => {
   const descriptionRef = useRef(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showReadMore, setShowReadMore] = useState(false);
@@ -19,7 +21,6 @@ const IndividualEvent = ({ onBack, onLearnMore }) => {
   /* replace with data for this single event from db */
   /* same format as json - single object, matching eid as param */
   // note: differences: also imports club image, club id -> for learn more button
-  
   function getEventById(events, eid) {
     return events.find(event => event.eid === eid) || null;
   }
@@ -67,10 +68,10 @@ const IndividualEvent = ({ onBack, onLearnMore }) => {
     return () => window.removeEventListener("resize", measure);
   }, [event?.description]);
 
-  // Scroll to top on nav
+  // scroll to top on nav
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [])
+  })
 
   if (!event) return null;
 
@@ -79,18 +80,17 @@ const IndividualEvent = ({ onBack, onLearnMore }) => {
       <div className="individual-event-inner">
         {/* LEFT SIDE - BACK BUTTON + FLYER */}
         <div className="individual-event-left">
-          <Link to="/events" className="invis-link">
+          <BackButton linkTo="/events" />
+          {/* <Link to="/events" className="invis-link">
             <button
             type="button"
             className="back-button"
-            onClick={onBack}
             aria-label="Go back"
             >
-              <ArrowLeft className="back-button-icon" size={16} />
-              <span>Back</span>
+            <ArrowLeft className="back-button-icon" size={16} />
+            <span>Back</span>
             </button>
-          </Link>
-
+          </Link> */}
           <div className="event-flyer-card">
             {event.flyer_url ? (
               <img
@@ -137,14 +137,16 @@ const IndividualEvent = ({ onBack, onLearnMore }) => {
                 <div className="event-club-name">{event.club_name}</div>
               </div>
             </div>
+            
+            <Link to={`/clubs/${event.cid}`} key={event.cid} className="invis-link">
+              <button
+                type="button"
+                className="learn-more-button"
+              >
+                Learn More
+              </button>
+            </Link>
 
-            <button
-              type="button"
-              className="learn-more-button"
-              onClick={onLearnMore}
-            >
-              Learn More
-            </button>
           </div>
 
           {/* Meta: date/time + location */}
