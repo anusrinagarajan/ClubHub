@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./auth.css";
 
 function Signup() {
+  const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -10,7 +11,20 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Signup:", { username, password, email, year });
+
+    const newUser = {
+      fullname,
+      username,
+      password,
+      email,
+      year,
+    };
+
+    // Save in localStorage
+    localStorage.setItem("user", JSON.stringify(newUser));
+
+    // Go to login
+    window.location.href = "/login";
   };
 
   return (
@@ -19,6 +33,13 @@ function Signup() {
         <h1 className="auth-title">Create account</h1>
 
         <form onSubmit={handleSubmit} className="auth-form">
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
+            className="auth-input"
+          />
 
           <input
             type="text"

@@ -1,21 +1,30 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./auth.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Save username for the rest of the app
-    localStorage.setItem("username", username);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
 
-    // Go to the main app/dashboard
-    navigate("/app");
+    if (!storedUser) {
+      alert("No account found. Please sign up first.");
+      return;
+    }
+
+    if (
+      storedUser.username === username &&
+      storedUser.password === password
+    ) {
+      localStorage.setItem("loggedInUser", JSON.stringify(storedUser));
+      window.location.href = "/app";
+    } else {
+      alert("Incorrect username or password.");
+    }
   };
 
   return (

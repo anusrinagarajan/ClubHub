@@ -10,6 +10,10 @@ import { Menu, CircleUser, Calendar, Users } from "lucide-react";
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // ⭐ Get logged in user's full name
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const fullName = loggedInUser?.fullname || "User";
+
   return (
     <div className="app">
 
@@ -18,7 +22,7 @@ function Layout() {
         <nav className="nav">
 
           {/*Events Navigation Button*/}
-          <Link to="/events" className="nav-link">
+          <Link to="/app/events" className="nav-link">
             <button className="nav-item">
               <Calendar className="nav-icon calendar"/>
               <span>Events</span>
@@ -26,7 +30,7 @@ function Layout() {
           </Link>
 
           {/*Clubs Navigation Button*/}
-          <Link to="/clubs" className="nav-link">
+          <Link to="/app/clubs" className="nav-link">
             <button className="nav-item">
               <Users className="nav-icon clubs"/>
               <span>Clubs</span>
@@ -36,11 +40,9 @@ function Layout() {
         </nav>
       </aside>
 
-
-      {/* Top Bar (always visible) */}
+      {/* Top Bar */}
       <header className="topbar">
         
-        {/* Menu Button */}
         <div className="left">
           <button className="icon-btn" onClick={() => setIsSidebarOpen((v) => !v)}>
             <Menu />
@@ -53,15 +55,15 @@ function Layout() {
           <div className="avatar">
             <CircleUser />
           </div>
-          <span className="user-name">Full Name</span>
+
+          {/* ⭐ Dynamic Name */}
+          <span className="user-name">Welcome, {fullName}</span>
         </div>
 
       </header>
 
-
-      {/* Main content area */}
+      {/* Main content */}
       <main className={`content ${isSidebarOpen ? "with-sidebar" : "full"}`}>
-        {/* Put your routed pages or dashboard content here */}
         <Outlet />
       </main>
 
