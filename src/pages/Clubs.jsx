@@ -119,7 +119,7 @@ function Clubs() {
       club.categories.forEach((cat) => catSet.add(cat));
     });
     return [...catSet].sort();
-  }, []);
+  }, [clubsData]);
 
   // Toggle favorite status
   const toggleFavorite = (clubId) => {
