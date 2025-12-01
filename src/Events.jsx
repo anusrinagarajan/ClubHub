@@ -1,37 +1,25 @@
 import React, { useMemo, useState, useRef, useEffect } from "react";
 import { Search, ChevronDown, X, Check } from "lucide-react";
 
-import eventsData from "./data/eventsData.json";
 import ClubEventCard from "./components/ClubEventCard";
-
 import "./styles/Events.css";
 
-/**
- * Utility - Click-outside hook for closing popovers
- * 
- * - `ref`: references popup element
- * - `onOutside`: function to run that closes popup IF click was outside of popup
- */
+/* ------------------------------ */
+/* HOOK: useClickOutside          */
+/* ------------------------------ */
 function useClickOutside(ref, onOutside) {
-  useEffect(() => { //use to prevent multiple/unused EventListeners when component (popup) unmounts
-
+  useEffect(() => {
     function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) onOutside(); //onOutside - function to close popup
+      if (ref.current && !ref.current.contains(e.target)) onOutside();
     }
-    
-    document.addEventListener("mousedown", handleClick); //calls handleClick upon click ANYWHERE
-
-    return () => document.removeEventListener("mousedown", handleClick); //cleanup function - prevent duplicate EventListeners,
-  }, [ref, onOutside]);                                                  //resource leaks
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [ref, onOutside]);
 }
 
-/**
- * MultiSelect dropdown (checkbox list)
- * - `options`: array of strings
- * - `selected`: Set<string>
- * - `onChange`: (newSet: Set<string>) => void
- * - `label`: string for the trigger button
- */
+/* ------------------------------ */
+/* COMPONENT: MultiSelect         */
+/* ------------------------------ */
 function MultiSelect({ options, selected, onChange, label }) {
   const [open, setOpen] = useState(false);
   const popRef = useRef(null);
@@ -103,9 +91,9 @@ function MultiSelect({ options, selected, onChange, label }) {
   );
 }
 
-/**
- * SingleSelect dropdown (radio list) for Order By
- */
+/* ------------------------------ */
+/* COMPONENT: SingleSelect        */
+/* ------------------------------ */
 function SingleSelect({ label, value, options, onChange }) {
   const [open, setOpen] = useState(false);
   const popRef = useRef(null);
@@ -148,43 +136,64 @@ function SingleSelect({ label, value, options, onChange }) {
   );
 }
 
+/* ------------------------------ */
+/* COMPONENT: Events (MAIN)       */
+/* ------------------------------ */
 function Events() {
-  // ---------- Sample data (JSON) -> unique facets ----------
+  const [eventsData, setEventsData] = useState([]);
+
+  // Fetch from backend
+  useEffect(() => {
+    fetch("http://localhost:5000/api/events")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Loaded events:", data);
+        setEventsData(data);
+      })
+      .catch((err) => console.error("Error fetching events:", err));
+  }, []);
+
+  // Build filters
   const allCategories = useMemo(() => {
     const s = new Set();
-    eventsData.forEach((e) => e.categories.forEach((c) => s.add(c)));
-    return [...s].sort((a, b) => a.localeCompare(b));
-  }, []);
+    eventsData.forEach((e) => {
+      if (Array.isArray(e.categories)) {
+        e.categories.forEach((c) => s.add(c));
+      }
+    });
+    return [...s].sort();
+  }, [eventsData]);
 
   const allLocations = useMemo(() => {
     const s = new Set(eventsData.map((e) => e.location));
-    return [...s].sort((a, b) => a.localeCompare(b));
-  }, []);
+    return [...s].sort();
+  }, [eventsData]);
 
-  // ---------- State ----------
+  // Filter state
   const [query, setQuery] = useState("");
-  const [catSel, setCatSel] = useState(new Set());         // multi
-  const [locSel, setLocSel] = useState(new Set());         // multi
-  const [orderBy, setOrderBy] = useState("date-asc");      // single
+  const [catSel, setCatSel] = useState(new Set());
+  const [locSel, setLocSel] = useState(new Set());
+  const [orderBy, setOrderBy] = useState("date-asc");
 
-  // ---------- Derived: filtered + sorted ----------
+  // Filtering + Sorting
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = query.toLowerCase();
 
     const pass = (ev) => {
-      const byName = !q || ev.name.toLowerCase().includes(q);
+      const nameField = ev.name || "";
+      const catArray = ev.categories || [];
+      const locField = ev.location || "";
 
-      const byCats =
-        catSel.size === 0 || ev.categories.some((c) => catSel.has(c));
+      const matchName = !q || nameField.toLowerCase().includes(q);
+      const matchCat =
+        catSel.size === 0 || catArray.some((c) => catSel.has(c));
+      const matchLoc = locSel.size === 0 || locSel.has(locField);
 
-      const byLocs = locSel.size === 0 || locSel.has(ev.location);
-
-      return byName && byCats && byLocs;
+      return matchName && matchCat && matchLoc;
     };
 
     const list = eventsData.filter(pass);
 
-    // Sorting
     const compare = {
       "date-asc": (a, b) => new Date(a.date) - new Date(b.date),
       "date-desc": (a, b) => new Date(b.date) - new Date(a.date),
@@ -193,7 +202,7 @@ function Events() {
     }[orderBy];
 
     return [...list].sort(compare);
-  }, [query, catSel, locSel, orderBy]);
+  }, [eventsData, query, catSel, locSel, orderBy]);
 
   const orderOptions = [
     { value: "date-asc", label: "Date (Earliest)" },
@@ -216,18 +225,15 @@ function Events() {
       </div>
 
       <div className="filters-row">
-        {/* Search */}
         <div className="search">
           <Search className="search-icon" size={18} />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search…"
-            aria-label="Search events by name"
           />
         </div>
 
-        {/* Categories (multi) */}
         <MultiSelect
           options={allCategories}
           selected={catSel}
@@ -235,7 +241,6 @@ function Events() {
           label="Categories"
         />
 
-        {/* Order By (single) */}
         <SingleSelect
           label="Order By"
           value={orderBy}
@@ -243,7 +248,6 @@ function Events() {
           onChange={setOrderBy}
         />
 
-        {/* Location (multi) */}
         <MultiSelect
           options={allLocations}
           selected={locSel}
@@ -252,7 +256,6 @@ function Events() {
         />
       </div>
 
-      {/* Cards grid */}
       <div className="grid">
         {filtered.map((ev) => (
           <ClubEventCard key={ev.id} event={ev} />

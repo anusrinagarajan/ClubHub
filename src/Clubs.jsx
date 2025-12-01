@@ -1,13 +1,12 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Search, X, Check } from "lucide-react";
-import clubsData from "./data/clubsData.json";
 import svgPaths from "./imports/svg-s8131oafzg";
 
 import "./styles/Clubs.css";
 
-/**
- * Utility - Click-outside hook for closing popovers
- */
+/* --------------------------------------------
+   Utility - Click Outside Hook
+-------------------------------------------- */
 function useClickOutside(ref, onOutside) {
   useEffect(() => {
     function handleClick(e) {
@@ -18,6 +17,9 @@ function useClickOutside(ref, onOutside) {
   }, [ref, onOutside]);
 }
 
+/* --------------------------------------------
+   Star Icon Component
+-------------------------------------------- */
 function StarIcon({ filled, onClick }) {
   return (
     <div className="star-icon" onClick={onClick}>
@@ -35,6 +37,9 @@ function StarIcon({ filled, onClick }) {
   );
 }
 
+/* --------------------------------------------
+   Club Card Component
+-------------------------------------------- */
 function ClubCard({ club, onToggleFavorite }) {
   const visibleTags = club.categories.slice(0, 2);
   const remainingCount = club.categories.length - 2;
@@ -42,19 +47,21 @@ function ClubCard({ club, onToggleFavorite }) {
   return (
     <div className="club-card">
       <div className="club-card-image-placeholder" />
+
       <div className="club-card-content">
         <StarIcon
           filled={club.favorited}
           onClick={() => onToggleFavorite(club.id)}
         />
+
         <h3 className="club-card-title">{club.name}</h3>
         <p className="club-card-description">{club.description}</p>
+
         <div className="club-card-tags">
           {visibleTags.map((tag, idx) => (
-            <span key={idx} className="tag">
-              {tag}
-            </span>
+            <span key={idx} className="tag">{tag}</span>
           ))}
+
           {remainingCount > 0 && (
             <span className="tag">+{remainingCount}</span>
           )}
@@ -64,6 +71,9 @@ function ClubCard({ club, onToggleFavorite }) {
   );
 }
 
+/* --------------------------------------------
+   Favorite Club Item Component
+-------------------------------------------- */
 function FavoriteClubItem({ club, onRemove }) {
   return (
     <div className="favorite-club-item">
@@ -76,28 +86,51 @@ function FavoriteClubItem({ club, onRemove }) {
   );
 }
 
+/* --------------------------------------------
+   MAIN CLUBS COMPONENT
+-------------------------------------------- */
 function Clubs() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState(new Set());
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [showCategoryPopup, setShowCategoryPopup] = useState(false);
-  const [clubs, setClubs] = useState(
-    clubsData.map((club) => ({ ...club, favorited: false }))
-  );
-  
+
+  // REAL clubs from backend
+  const [clubs, setClubs] = useState([]);
+
   const popupRef = useRef(null);
   useClickOutside(popupRef, () => setShowCategoryPopup(false));
 
-  // Get all unique categories
-  const allCategories = useMemo(() => {
-    const catSet = new Set();
-    clubsData.forEach((club) => {
-      club.categories.forEach((cat) => catSet.add(cat));
-    });
-    return [...catSet].sort();
+  /* --------------------------------------------
+     FETCH CLUBS FROM BACKEND
+  -------------------------------------------- */
+  useEffect(() => {
+    fetch("http://localhost:5000/api/clubs")
+      .then((res) => res.json())
+      .then((data) => {
+        const withFavorites = data.map((club) => ({
+          ...club,
+          favorited: false,
+        }));
+        setClubs(withFavorites);
+      })
+      .catch((err) => console.error("Error loading clubs:", err));
   }, []);
 
-  // Toggle favorite status
+  /* --------------------------------------------
+     ALL UNIQUE CATEGORIES (from DB)
+  -------------------------------------------- */
+  const allCategories = useMemo(() => {
+    const set = new Set();
+    clubs.forEach((club) => {
+      club.categories.forEach((c) => set.add(c));
+    });
+    return [...set].sort();
+  }, [clubs]);
+
+  /* --------------------------------------------
+     Toggle Favorite
+  -------------------------------------------- */
   const toggleFavorite = (clubId) => {
     setClubs((prev) =>
       prev.map((club) =>
@@ -106,7 +139,6 @@ function Clubs() {
     );
   };
 
-  // Remove from favorites
   const removeFavorite = (clubId) => {
     setClubs((prev) =>
       prev.map((club) =>
@@ -115,59 +147,53 @@ function Clubs() {
     );
   };
 
-  // Toggle category filter
+  /* --------------------------------------------
+     Toggle Category Filter
+  -------------------------------------------- */
   const toggleCategory = (category) => {
     const newSet = new Set(selectedCategories);
-    if (newSet.has(category)) {
-      newSet.delete(category);
-    } else {
-      newSet.add(category);
-    }
+    if (newSet.has(category)) newSet.delete(category);
+    else newSet.add(category);
     setSelectedCategories(newSet);
   };
 
-  // Filtered clubs
+  /* --------------------------------------------
+     FILTER CLUBS
+  -------------------------------------------- */
   const filteredClubs = useMemo(() => {
     return clubs.filter((club) => {
-      // Search filter
       const matchesSearch =
         searchQuery.trim() === "" ||
         club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         club.description.toLowerCase().includes(searchQuery.toLowerCase());
 
-      // Category filter
       const matchesCategories =
         selectedCategories.size === 0 ||
         club.categories.some((cat) => selectedCategories.has(cat));
 
-      // Favorites filter
       const matchesFavorites = !showFavoritesOnly || club.favorited;
 
       return matchesSearch && matchesCategories && matchesFavorites;
     });
   }, [clubs, searchQuery, selectedCategories, showFavoritesOnly]);
 
-  // Get favorited clubs
   const favoritedClubs = useMemo(() => {
     return clubs.filter((club) => club.favorited);
   }, [clubs]);
 
-  // Visible selected filters (show first 3)
-  const selectedCategoriesArray = [...selectedCategories];
-  const visibleFilters = selectedCategoriesArray.slice(0, 3);
-  const remainingFiltersCount = Math.max(0, selectedCategoriesArray.length - 3);
+  const selectedArray = [...selectedCategories];
+  const visibleFilters = selectedArray.slice(0, 3);
+  const remainingFiltersCount = Math.max(0, selectedArray.length - 3);
 
   return (
     <div className="clubs-page">
-      {/* Main Content Area */}
       <div className="clubs-main-area">
-        {/* Title */}
         <h1 className="clubs-title">Clubs</h1>
         <p className="clubs-subtitle">Explore diverse student organizations</p>
 
-        {/* Filter & Search Section */}
+        {/* FILTERS & SEARCH */}
         <div className="filter-search-section">
-          {/* Search Bar */}
+
           <div className="clubs-search-bar">
             <div className="search-icon-wrapper">
               <svg width="45" height="45" fill="none" viewBox="0 0 45 45">
@@ -189,20 +215,16 @@ function Clubs() {
             />
           </div>
 
-          {/* Filter by label */}
           <p className="filter-by-label">Filter by:</p>
 
-          {/* Filters */}
           <div className="clubs-filters">
-            {/* Add Filter Button */}
-            <button 
+            <button
               className="filter-add-btn"
               onClick={() => setShowCategoryPopup(!showCategoryPopup)}
             >
               +
             </button>
 
-            {/* Show Favorites Toggle */}
             <button
               className={`filter-chip ${showFavoritesOnly ? "active" : ""}`}
               onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
@@ -210,7 +232,6 @@ function Clubs() {
               Show Favorites
             </button>
 
-            {/* Selected Category Filters */}
             {visibleFilters.map((cat) => (
               <button
                 key={cat}
@@ -222,23 +243,24 @@ function Clubs() {
               </button>
             ))}
 
-            {/* Remaining count */}
             {remainingFiltersCount > 0 && (
-              <span className="filter-chip active">+{remainingFiltersCount}</span>
+              <span className="filter-chip active">
+                +{remainingFiltersCount}
+              </span>
             )}
 
-            {/* Category Selection Popup */}
             {showCategoryPopup && (
               <div className="category-popup" ref={popupRef}>
                 <div className="category-popup-header">
                   <h3>Select Categories</h3>
-                  <button 
+                  <button
                     className="popup-close-btn"
                     onClick={() => setShowCategoryPopup(false)}
                   >
                     <X size={20} />
                   </button>
                 </div>
+
                 <div className="category-options">
                   {allCategories.map((cat) => {
                     const isSelected = selectedCategories.has(cat);
@@ -262,7 +284,7 @@ function Clubs() {
           </div>
         </div>
 
-        {/* Clubs Grid */}
+        {/* CLUBS GRID */}
         <div className="clubs-grid">
           {filteredClubs.map((club) => (
             <ClubCard
@@ -280,10 +302,11 @@ function Clubs() {
         </div>
       </div>
 
-      {/* Favorited Clubs Sidebar */}
+      {/* FAVORITES SIDEBAR */}
       <div className="favorited-sidebar">
         <div className="favorited-card">
           <h2 className="favorited-title">Favorited Clubs</h2>
+
           <div className="favorited-list">
             {favoritedClubs.slice(0, 5).map((club) => (
               <FavoriteClubItem
@@ -295,7 +318,7 @@ function Clubs() {
 
             {favoritedClubs.length === 0 && (
               <p className="favorited-empty">
-                No favorited clubs yet. Click the star icon on any club to add it here!
+                No favorited clubs yet. Click the star icon to add one!
               </p>
             )}
           </div>
