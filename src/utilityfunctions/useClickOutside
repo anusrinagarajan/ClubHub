@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+
+// IS A CUSTOM HOOK - which is why useEffect can be nested inside (hooks must be called at top leel)
+
 /**
  * Utility - Click-outside hook for closing popovers
  * 

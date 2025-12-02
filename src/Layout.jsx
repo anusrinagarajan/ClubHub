@@ -1,67 +1,114 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, Outlet } from 'react-router-dom';
 
 import "./styles/App.css";
-import "./styles/Sidebar.css"
-import "./styles/Topbar.css"
+import "./styles/Sidebar.css";
+import "./styles/Topbar.css";
 
-import { Menu, CircleUser, Calendar, Users } from "lucide-react";
+import useClickOutside from "./utilityfunctions/useClickOutside"
+
+import { Menu, CircleUser, Calendar, Users, Pen } from "lucide-react";
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
+
+  const popupRef = useRef(null);
+
+  // Logged-in user info
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const fullName = loggedInUser?.fullname;
+
+  // Close log out popout - note: cannot do setShowLogout(false), bc would call immediately and pass undefined
+  useClickOutside(popupRef, () => setShowLogout(false))
+
+  // Logout handler
+  function handleLogout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.reload();
+  }
+
+  function goToLogin() {
+    window.location.href = "/login";
+  }
 
   return (
     <div className="app">
 
-      {/* Side Bar */}
+      {/* Sidebar */}
       <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
         <nav className="nav">
 
-          {/*Events Navigation Button*/}
           <Link to="/events" className="invis-link">
             <button className="nav-item">
-              <Calendar className="nav-icon calendar"/>
+              <Calendar className="nav-icon calendar" />
               <span>Events</span>
             </button>
           </Link>
 
-          {/*Clubs Navigation Button*/}
           <Link to="/clubs" className="invis-link">
             <button className="nav-item">
-              <Users className="nav-icon clubs"/>
+              <Users className="nav-icon clubs" />
               <span>Clubs</span>
             </button>
           </Link>
 
+          {loggedInUser && <Link to="/manage-clubs" className="invis-link">
+            <button className="nav-item">
+              <Pen className="nav-icon pen" />
+              <span>Admin: Clubs</span>
+            </button>
+          </Link>}
+
         </nav>
       </aside>
 
-
-      {/* Top Bar (always visible) */}
+      {/* Topbar */}
       <header className="topbar">
-        
-        {/* Menu Button */}
         <div className="left">
-          <button className="icon-btn" onClick={() => setIsSidebarOpen((v) => !v)}>
+          <button className="icon-btn" onClick={() => setIsSidebarOpen(v => !v)}>
             <Menu />
           </button>
           <Link to="/events" className="brand invis-link"><div>ClubNav</div></Link>
         </div>
 
-        {/* User Info */}
-        <div className="right">
-          <div className="avatar">
-            <CircleUser />
-          </div>
-          <span className="user-name">Full Name</span>
-        </div>
+        {/* User info */}
+        <div className="right" style={{ position: "relative" }}>
 
+          {loggedInUser ? (
+              <>
+              <div className="avatar clickable" onClick={() => setShowLogout(v => !v)}>
+                <CircleUser />
+              </div>
+
+              <span className="user-name clickable" onClick={() => setShowLogout(v => !v)}>
+                Welcome, {fullName}
+              </span>
+              </>
+            )
+            :
+            // Login button - displayed if user is not logged in
+            (
+              <div className="log-in clickable" onClick={() => goToLogin()}>
+                Log in
+              </div>
+            )
+          }
+
+          {/* Logout Popup */}
+          {showLogout && (
+            <div className="logout-popup" ref={popupRef}>
+              <button className="logout-btn" onClick={handleLogout}>
+                Log Out
+              </button>
+            </div>
+          )}
+
+        </div>
       </header>
 
-
-      {/* Main content area */}
+      {/* Main content */}
       <main className={`content ${isSidebarOpen ? "with-sidebar" : "full"}`}>
-        {/* Put your routed pages or dashboard content here */}
         <Outlet />
       </main>
 
