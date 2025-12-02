@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import clubsData from "../data/sampleClubsData.json";
-import eventsData from "../data/sampleEventsData.json";
+// import clubsData from "../data/sampleClubsData.json";
+// import eventsData from "../data/sampleEventsData.json";
 
 import { ClubEventCard } from "../components/ClubEventCard"
 import { BackButton } from "../components/BackButton";
@@ -14,23 +14,15 @@ import {
 } from "lucide-react";
 
 import "../styles/IndividualClub.css";
-
-function getClubById(clubs, cid) {
-  return clubs.find((club) => club.id == cid) || null;
-}
-
-function getEventsByClub(events, cid) {
-  return events.filter((event) => event.cid == cid);
-}
-
 function addClubToFavorites(club) {
   // TODO: implement favorites logic
 }
 
 function IndividualClub() {
   const { cid } = useParams();
-  const club = getClubById(clubsData, cid);
-  const clubEvents = getEventsByClub(eventsData, cid);
+  const [club, setClub] = useState({});
+  const [clubEvents, setClubEvents] = useState([]);
+  // const clubEvents = getEventsByClub(eventsData, cid);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -38,18 +30,27 @@ function IndividualClub() {
 
   // Fetch from backend
   useEffect(() => {
-    const loadEventData = async () => {
+    const loadData = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/individual-club?cid=${cid}`);
+        const res = await fetch(`http://localhost:5000/api/clubs?cid=${cid}`);
         const data = await res.json();
         console.log("Loaded club:", data);
         setClub(data[0]);
       } catch (err) {
-        console.error("Error fetching events:", err);
+        console.error("Error fetching club data:", err);
+      }
+
+      try {
+        const res = await fetch(`http://localhost:5000/api/events?cid=${cid}`);
+        const data = await res.json();
+        console.log("Loaded events:", data);
+        setClubEvents(data);
+      } catch (err) {
+        console.error("Error fetching event data:", err);
       }
     };
 
-    loadEventData();
+    loadData();
   }, []);
 
   if (!club) {

@@ -1,6 +1,6 @@
 INSERT IGNORE INTO Event_Location (lid, virtual_link, location, room_number) VALUES
 (1, NULL, 'Engineering', 101),
-(2, NULL, 'Zoom Meeting Room', NULL);
+(2, "a link", 'Zoom Meeting Room', NULL);
 
 INSERT IGNORE INTO Club_Event (eid, lid, flyer_url, description, start_time, end_time, event_name) VALUES
 (1, 1, 'https://plus.unsplash.com/premium_photo-1663091699742-70ca6f835197?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'Start of the semester meeting to meet members and officers', '2025-03-13 17:00:00', '2025-03-13 19:00:00', 'Welcome Social'),

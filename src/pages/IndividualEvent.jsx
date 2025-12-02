@@ -24,7 +24,7 @@ const IndividualEvent = () => {
   useEffect(() => {
     const loadEventData = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/individual-event?eid=${eid}`);
+        const res = await fetch(`http://localhost:5000/api/events?eid=${eid}`);
         const data = await res.json();
         console.log("Loaded events:", data);
         setEvent(data[0]);
