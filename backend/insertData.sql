@@ -1,6 +1,6 @@
 INSERT IGNORE INTO Event_Location (lid, virtual_link, location, room_number) VALUES
 (1, NULL, 'Engineering', 101),
-(2, "a link", 'Zoom Meeting Room', NULL);
+(2, NULL, 'Zoom Meeting Room', NULL);
 
 INSERT IGNORE INTO Club_Event (eid, lid, flyer_url, description, start_time, end_time, event_name) VALUES
 (1, 1, 'https://plus.unsplash.com/premium_photo-1663091699742-70ca6f835197?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'Start of the semester meeting to meet members and officers', '2025-03-13 17:00:00', '2025-03-13 19:00:00', 'Welcome Social'),
@@ -44,9 +44,10 @@ INSERT IGNORE INTO Socials (platform, cid, link) VALUES
 ('Discord', 2, 'https://www.google.com/'),
 ('Discord', 3, 'https://www.google.com/');
 
-INSERT IGNORE INTO User (uid, full_name, college_year, email, username, password, is_Club_Officer, is_Admin) VALUES
-(1, 'Jane Doe', 3, 'jane.doe@sjsu.edu', 'janed', NULL, TRUE, FALSE),
-(2, 'John Smith', 2, 'john.smith@sjsu.edu', 'johns', NULL, FALSE, FALSE);
+INSERT IGNORE INTO User (first_name, last_name, college_year, email, username, password, is_Club_Officer, is_Admin) VALUES
+('First', 'Last', 3, 'first.last@sjsu.edu', 'User', 'pw', FALSE, FALSE),
+('Jane', 'Doe', 3, 'jane.doe@sjsu.edu', 'janed', 'pw', TRUE, FALSE),
+('John', 'Smith', 2, 'john.smith@sjsu.edu', 'johns', 'pw', FALSE, TRUE);
 
 INSERT IGNORE INTO Favorite (cid, uid) VALUES
 (1, 2),

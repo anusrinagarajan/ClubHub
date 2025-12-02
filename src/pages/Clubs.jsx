@@ -94,7 +94,7 @@ function Clubs() {
       try {
         const res = await fetch("http://localhost:5000/api/clubs");
         const data = await res.json();
-        console.log("Loaded events:", data);
+        console.log("Loaded clubs:", data);
         setClubsData(data.map((club) => ({ ...club, favorited: false })));
       } catch (err) {
         console.error("Error fetching events:", err);

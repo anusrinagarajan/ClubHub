@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Event_Location (
 	mode VARCHAR(200),
 	location VARCHAR(200),
 	room_number INTEGER,
-    virtual_link VARCHAR(200),
+virtual_link VARCHAR(200),
 	PRIMARY KEY(lid)
 );
 
@@ -88,12 +88,13 @@ CREATE TABLE IF NOT EXISTS Socials (
 );
 
 CREATE TABLE IF NOT EXISTS User(
-	uid INTEGER,
-	full_name VARCHAR(200),
-	college_year INTEGER,
-	email VARCHAR(200) UNIQUE,
-	username VARCHAR(200) UNIQUE,
-	password VARCHAR(200),
+	uid INTEGER AUTO_INCREMENT,
+	first_name VARCHAR(200) NOT NULL,
+	last_name VARCHAR(200) NOT NULL,
+	college_year INTEGER NOT NULL,
+	email VARCHAR(200) UNIQUE NOT NULL,
+	username VARCHAR(200) UNIQUE NOT NULL,
+	password VARCHAR(200) NOT NULL,
 	is_Club_Officer BOOLEAN,
 	is_Admin BOOLEAN,
 	PRIMARY KEY(uid)

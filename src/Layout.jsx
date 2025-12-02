@@ -12,15 +12,13 @@ import { Menu, CircleUser, Calendar, Users, Pen } from "lucide-react";
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-
   const popupRef = useRef(null);
 
   // Logged-in user info
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  const fullName = loggedInUser?.fullname;
-
-  // Close log out popout - note: cannot do setShowLogout(false), bc would call immediately and pass undefined
-  useClickOutside(popupRef, () => setShowLogout(false))
+  const fullName = loggedInUser?.first_name + " " + loggedInUser?.last_name;
+  console.log("Logged in user: " + fullName);
+  console.log(loggedInUser);
 
   // Logout handler
   function handleLogout() {
@@ -31,6 +29,11 @@ function Layout() {
   function goToLogin() {
     window.location.href = "/login";
   }
+  
+  const accountTypeString = loggedInUser?.is_Admin ? "Admin" : loggedInUser?.is_Club_Officer ? "Club Officer" : null;
+
+  // Close log out popout - note: cannot do setShowLogout(false), bc would call immediately and pass undefined
+  useClickOutside(popupRef, () => setShowLogout(false))
 
   return (
     <div className="app">
@@ -53,12 +56,14 @@ function Layout() {
             </button>
           </Link>
 
-          {loggedInUser && <Link to="/manage-clubs" className="invis-link">
+          {loggedInUser && (loggedInUser.is_Club_Officer || loggedInUser.is_Admin) && 
+          <Link to="/manage-clubs" className="invis-link">
             <button className="nav-item">
               <Pen className="nav-icon pen" />
-              <span>Admin: Clubs</span>
+              <span>{accountTypeString}: Clubs</span>
             </button>
-          </Link>}
+          </Link>
+          }
 
         </nav>
       </aside>
@@ -82,7 +87,7 @@ function Layout() {
               </div>
 
               <span className="user-name clickable" onClick={() => setShowLogout(v => !v)}>
-                Welcome, {fullName}
+                Welcome, {accountTypeString + ": " + fullName}
               </span>
               </>
             )

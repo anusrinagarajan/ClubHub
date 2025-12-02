@@ -1,27 +1,28 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Authorization.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [usernameError, setUsernameError] = useState("");
+  const [usernameOrEmailError, setUsernameOrEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [incorrectUserOrPassError, setIncorrectUserOrPassError] = useState("");
 
   // Validation functions
-  const validateUsername = () => {
-    if (!username.trim()) {
-      setUsernameError("Username is required.");
+  const validateUsernameOrEmail = () => {
+    if (!usernameOrEmail.trim()) {
+      setUsernameOrEmailError("Username or email is required.");
       return false;
     }
-    setUsernameError("");
+    setUsernameOrEmailError("");
     return true;
   };
 
   const validatePassword = () => {
-    if (!password.trim()) {
+    const pw = password;
+    if (!pw.trim()) {
       setPasswordError("Password is required.");
       return false;
     }
@@ -29,29 +30,42 @@ function Login() {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const ok1 = validateUsername();
+    const ok1 = validateUsernameOrEmail();
     const ok2 = validatePassword();
 
-    if(!ok1 || !ok2) return;
-    
-    // Verify credentials
-    const credentialsValid = () => {
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-      return storedUser.username === username && storedUser.password === password;
+    if (!ok1 || !ok2) return;
+
+    // Get account data
+    const getAccountInfo = async (usernameOrEmail) => {
+      const result = await fetch(`http://localhost:5000/api/auth/login`, {
+        method: `POST`,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"usernameOrEmail" : usernameOrEmail})
+      })
+      console.log(usernameOrEmail);
+      const data = await result.json();
+      if (data.length === 0) {
+        setIncorrectUserOrPassError("This account doesn't exist. Create an account.");
+        return;
+      }
+      return data[0];
     }
 
-    if (credentialsValid) {
-      setIncorrectUserOrPassError("");
+    const storedUser = await getAccountInfo(usernameOrEmail);
 
-      // Stores logged in user's session + account info locally
+    // Verify password
+    if (storedUser && storedUser.password === password) {
+      setIncorrectUserOrPassError("");
       localStorage.setItem("loggedInUser", JSON.stringify(storedUser));
 
       window.location.href = "/";
     } else {
-      setIncorrectUserOrPassError("Incorrect username or password.");
+      setIncorrectUserOrPassError("Incorrect username/email or password.");
     }
   };
 
@@ -61,17 +75,20 @@ function Login() {
         <h1 className="auth-title">Log in to your account</h1>
 
         <form onSubmit={handleSubmit} className="auth-form">
-
           <div className="auth-field">
-            <label className="auth-label">Username</label>
+            <label className="auth-label">Username or College Email</label>
             <input
               type="text"
-              value={username}
-              onBlur={validateUsername}
-              onChange={(e) => setUsername(e.target.value)}
-              className={`auth-input ${usernameError ? "auth-input-error" : ""}`}
+              value={usernameOrEmail}
+              onBlur={validateUsernameOrEmail}
+              onChange={(e) => setUsernameOrEmail(e.target.value)}
+              className={`auth-input ${
+                usernameOrEmailError ? "auth-input-error" : ""
+              }`}
             />
-            {usernameError && <p className="auth-error-text">{usernameError}</p>}
+            {usernameOrEmailError && (
+              <p className="auth-error-text">{usernameOrEmailError}</p>
+            )}
           </div>
 
           <div className="auth-field">
@@ -83,16 +100,24 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className={`auth-input ${passwordError ? "auth-input-error" : ""}`}
             />
-            {passwordError && <p className="auth-error-text">{passwordError}</p>}
+            {passwordError && (
+              <p className="auth-error-text">{passwordError}</p>
+            )}
           </div>
 
           <p className="auth-text">
             Don’t have an account?{" "}
-            <Link to="/signup" className="auth-link">Create account</Link>
+            <Link to="/signup" className="auth-link">
+              Create account
+            </Link>
           </p>
 
-          <button type="submit" className="auth-button">Log in</button>
-          {incorrectUserOrPassError && <p className="auth-error-text">{incorrectUserOrPassError}</p>}
+          <button type="submit" className="auth-button">
+            Log in
+          </button>
+          {incorrectUserOrPassError && (
+            <p className="auth-error-text">{incorrectUserOrPassError}</p>
+          )}
         </form>
       </div>
     </div>
