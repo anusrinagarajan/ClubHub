@@ -8,6 +8,8 @@ import { Events } from "./pages/Events.jsx";
 import { IndividualEvent } from "./pages/IndividualEvent.jsx"
 import { IndividualClub } from "./pages/IndividualClub.jsx"
 import { ManageClubs } from "./pages/ManageClubs.jsx"
+import { EditingIndividualClub } from "./pages/EditingIndividualClub.jsx";
+
 
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/SignUp.jsx";
@@ -36,6 +38,9 @@ function App() {
           <Route path="clubs" element={<Clubs />} />
           <Route path="clubs/:cid" element={<IndividualClub />}/> 
           <Route path="manage-clubs" element={<ManageClubs />} />
+          <Route path="manage-clubs" element={<ManageClubs />} />
+          <Route path="manage-clubs/:cid/edit" element={<EditingIndividualClub />} />
+
         </Route>
 
       </Routes>

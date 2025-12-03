@@ -32,7 +32,7 @@ function IndividualClub() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/clubs?cid=${cid}`);
+        const res = await fetch(`http://localhost:5174/api/clubs?cid=${cid}`);
         const data = await res.json();
         console.log("Loaded club:", data);
         setClub(data[0]);
@@ -41,7 +41,7 @@ function IndividualClub() {
       }
 
       try {
-        const res = await fetch(`http://localhost:5000/api/events?cid=${cid}`);
+        const res = await fetch(`http://localhost:5174/api/events?cid=${cid}`);
         const data = await res.json();
         console.log("Loaded events:", data);
         setClubEvents(data);

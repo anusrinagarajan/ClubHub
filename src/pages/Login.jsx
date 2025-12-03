@@ -40,7 +40,7 @@ function Login() {
 
     // Get account data
     const getAccountInfo = async (usernameOrEmail) => {
-      const result = await fetch(`http://localhost:5000/api/auth/login`, {
+      const result = await fetch(`http://localhost:5174/api/auth/login`, {
         method: `POST`,
         headers: {
           'Content-Type': 'application/json'

@@ -92,7 +92,7 @@ function Clubs() {
   useEffect(() => {
     const loadClubs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/clubs");
+        const res = await fetch("http://localhost:5174/api/clubs");
         const data = await res.json();
         console.log("Loaded clubs:", data);
         setClubsData(data.map((club) => ({ ...club, favorited: false })));
