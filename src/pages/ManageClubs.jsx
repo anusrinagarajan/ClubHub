@@ -19,10 +19,15 @@ function ManageClubCard({ club }) {
       </div>
 
       <div className="club-card-content">
-        {/* Reuse .star-icon positioning for the edit icon */}
+        {/* Use this spot for the edit link */}
         <div className="star-icon">
-          {/* For now this is just a visual icon; you'll wire up the click later */}
-          <Pen size={24} />
+          <Link
+            to={`/manage-clubs/${club.id}/edit`}
+            className="invis-link"
+            aria-label="Edit club"
+          >
+            <Pen size={24} />
+          </Link>
         </div>
 
         <Link to={`/clubs/${club.id}`} className="invis-link">

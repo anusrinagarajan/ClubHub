@@ -36,13 +36,11 @@ router.get("/", async (req, res) => {
 
   const params = [];
 
-  // Get event data for specific event
   if (eid) {
     sql += ` AND ce.eid = ?`;
     params.push(eid);
   }
 
-  // Get event data for specific club
   if (cid) {
     sql += ` AND c.cid = ?`;
     params.push(cid);
@@ -69,6 +67,177 @@ router.get("/", async (req, res) => {
   } catch (err) {
     console.error("DB /api/events error:", err);
     res.status(500).json("an error occurred: " + err);
+  }
+});
+
+// ------------------------------------------------------------
+// GET /api/events/tags/all - list all event tags
+// ------------------------------------------------------------
+router.get("/tags/all", async (req, res) => {
+  try {
+    const [rows] = await pool.query(
+      "SELECT tag_name FROM Club_EventTags ORDER BY tag_name ASC"
+    );
+    res.json(rows);
+    console.log("/api/events/tags/all ran successfully!");
+  } catch (err) {
+    console.error("DB GET /api/events/tags/all error:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ------------------------------------------------------------
+// PUT /api/events/:eid - update event + location + tags
+// Body: {
+//   event_name, description, start_time, end_time,
+//   flyer_url, location, event_tags: [tag_name, ...]
+// }
+// ------------------------------------------------------------
+router.put("/:eid", async (req, res) => {
+  const { eid } = req.params;
+  const {
+    event_name,
+    description,
+    start_time,
+    end_time,
+    flyer_url,
+    location,
+    event_tags,
+  } = req.body;
+
+  console.log("PUT /api/events/:eid called with:", {
+    eid,
+    event_name,
+    description,
+    start_time,
+    end_time,
+    flyer_url,
+    location,
+    event_tags,
+  });
+
+  // helper: convert "2025-03-14T00:00:00.000Z" -> "2025-03-14 00:00:00"
+  function normalizeDateTime(value) {
+    if (!value) return null;
+    if (value.includes(" ") && !value.includes("T")) {
+      return value;
+    }
+    let v = value;
+    if (v.includes(".")) {
+      v = v.split(".")[0];
+    }
+    v = v.replace("T", " ");
+    v = v.replace("Z", "");
+    return v;
+  }
+
+  const tags = Array.isArray(event_tags) ? event_tags : [];
+
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    await conn.beginTransaction();
+
+    const [rows] = await conn.query(
+      "SELECT lid FROM Club_Event WHERE eid = ?",
+      [eid]
+    );
+
+    if (rows.length === 0) {
+      await conn.rollback();
+      return res.status(404).json({ error: "Event not found" });
+    }
+
+    const lid = rows[0].lid;
+
+    const normStart = normalizeDateTime(start_time);
+    const normEnd = normalizeDateTime(end_time);
+
+    await conn.query(
+      `
+        UPDATE Club_Event
+        SET event_name = ?, description = ?, start_time = ?, end_time = ?, flyer_url = ?
+        WHERE eid = ?
+      `,
+      [event_name, description, normStart, normEnd, flyer_url, eid]
+    );
+
+    await conn.query(
+      `
+        UPDATE Event_Location
+        SET location = ?
+        WHERE lid = ?
+      `,
+      [location, lid]
+    );
+
+    // reset tags for this event
+    await conn.query(
+      `DELETE FROM Club_Event_to_Club_EventTags WHERE eid = ?`,
+      [eid]
+    );
+
+    if (tags.length > 0) {
+      const [tagRows] = await conn.query(
+        `
+          SELECT tid, tag_name
+          FROM Club_EventTags
+          WHERE tag_name IN (?)
+        `,
+        [tags]
+      );
+
+      const tidByName = new Map(
+        tagRows.map((row) => [row.tag_name, row.tid])
+      );
+
+      const values = tags
+        .map((name) => {
+          const tid = tidByName.get(name);
+          if (!tid) return null;
+          return [eid, tid];
+        })
+        .filter(Boolean);
+
+      if (values.length > 0) {
+        await conn.query(
+          `
+            INSERT INTO Club_Event_to_Club_EventTags (eid, tid)
+            VALUES ?
+          `,
+          [values]
+        );
+      }
+    }
+
+    await conn.commit();
+    res.json({ message: "Event updated" });
+  } catch (err) {
+    if (conn) await conn.rollback();
+    console.error("DB PUT /api/events/:eid error:", err);
+    res.status(500).json({ error: err.message });
+  } finally {
+    if (conn) await conn.release();
+  }
+});
+
+// ------------------------------------------------------------
+// DELETE /api/events/:eid - delete one event
+// ------------------------------------------------------------
+router.delete("/:eid", async (req, res) => {
+  const { eid } = req.params;
+
+  console.log("DELETE /api/events/:eid called with:", { eid });
+
+  try {
+    const [results] = await pool.query(
+      `DELETE FROM Club_Event WHERE eid = ?`,
+      [eid]
+    );
+    res.json(results);
+  } catch (err) {
+    console.error("DB DELETE /api/events/:eid error:", err);
+    res.status(500).json({ error: err.message });
   }
 });
 
