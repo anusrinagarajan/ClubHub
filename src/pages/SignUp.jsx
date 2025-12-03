@@ -26,7 +26,7 @@ function Signup() {
       if (username) params.append("username", username);
       if (email) params.append("email", email);
 
-      const url = `http://localhost:5000/api/auth/check-exists?${params.toString()}`;
+      const url = `http://localhost:5174/api/auth/check-exists?${params.toString()}`;
 
       const res = await fetch(url);
       if (!res.ok) {
@@ -159,7 +159,7 @@ function Signup() {
     };
 
     const signUp = async (newUser) => {
-      const result = await fetch(`http://localhost:5000/api/auth/signup`, {
+      const result = await fetch(`http://localhost:5174/api/auth/signup`, {
         method: `POST`,
         headers: {
           'Content-Type': 'application/json'

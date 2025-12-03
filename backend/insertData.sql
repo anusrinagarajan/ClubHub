@@ -54,5 +54,5 @@ INSERT IGNORE INTO Favorite (cid, uid) VALUES
 (2, 1);
 
 INSERT IGNORE INTO Club_to_Club_Officer (uid, cid) VALUES
-(1, 1),
-(1, 2);
+(2, 1),
+(2, 2);
