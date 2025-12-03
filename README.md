@@ -9,29 +9,46 @@
 - Yuwen - Monday, 12/1/25: Merged auth_pages to main, added input validation to sign up + login fields, added sign in/log out buttons
 - Yuwen - Tuesday, 12/2/25: Connected sign up + login to backend, added route mounting for readability
 
+### **Prerequisites**
+1. Clone the repository:
+   ```bash
+   git clone <repo-link>
+2. Go to backend -> db.js -> change password field to your MYSQL password
+
 ## Getting Started
 <b>Backend</b>
-1. Run the following to start the MySQLserver (use path to your mysql.exe)
+1. Run the following to start the MySQLserver
+
+Windows: (use path to your mysql.exe)
 ```bash
 "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p
 ```
-
-3. Install dependencies
+  
+MacOS: 
+  ```bash
+  mysql -u root -p
+  ```
+  
+2. Install dependencies
 ```bash
 npm install express cors mysql2
 ```
 
-4. Run express server
+3. Run express server
 ```bash
 cd backend
 node server.js
 ```
 
-5. Go to
+Windows Only:
+
+4. Go to
 ```bash
 http://localhost:5000/
 ```
-
+MacOS:
+1. Open a new terminal window
+2. Go into the cloned folder
 
 <b>Frontend</b>
 1. Install dependencies
@@ -39,10 +56,11 @@ http://localhost:5000/
 npm install
 ```
 
-3. Run application
+2. Run application
 ```bash
 npm run dev
 ```
+3. Copy the localhost link and paste into browser
 
 ## Existing accounts:
 Club Officer Account
