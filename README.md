@@ -6,8 +6,9 @@
 - Yuwen - Saturday, 11/29/25: Created individual events page + added photos to events, refactored project structure for readability
 - Simi - Sunday, 11/30/25: Created sign up + login pages (authentication, local storage, page ui)
 - Yuwen - Sunday, 11/30/25: Created individual clubs page + added photos to clubs list, connected frontend pages to backend
-- Yuwen - Monday, 12/1/25: Merged auth_pages to main, added input validation to sign up + login fields, added sign in/log out buttons
-- Yuwen - Tuesday, 12/2/25: Connected sign up + login to backend, added route mounting for readability
+- Yuwen - Monday, 12/01/25: Merged auth_pages to main, added input validation to sign up + login fields, added sign in/log out buttons
+- Yuwen - Tuesday, 12/02/25: Connected sign up + login to backend, added route mounting for readability
+- Simi  - Wednesday, 12/03/25: Improved project startup documentation with detailed setup frontend/backend steps for MacOS users.
 
 ### **Prerequisites**
 1. Clone the repository:
