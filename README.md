@@ -4,7 +4,7 @@
 - Anusri - Thursday, 11/27/25: Created clubs list page (clubsData.json, Clubs.css, Clubs.jsx, imports folder)
 - Simi - Saturday, 11/29/25: Started backend framework (server.js, db.js), established database connection.
 - Yuwen - Saturday, 11/29/25: Created individual events page + added photos to events, refactored project structure for readability
-- Simi - Sunday, 11/30/25: Created sign up + login pages
+- Simi - Sunday, 11/30/25: Created sign up + login pages (authentication, local storage, page ui)
 - Yuwen - Sunday, 11/30/25: Created individual clubs page + added photos to clubs list, connected frontend pages to backend
 - Yuwen - Monday, 12/1/25: Merged auth_pages to main, added input validation to sign up + login fields, added sign in/log out buttons
 - Yuwen - Tuesday, 12/2/25: Connected sign up + login to backend, added route mounting for readability
