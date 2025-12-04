@@ -1,9 +1,8 @@
 CREATE TABLE IF NOT EXISTS Event_Location (
 	lid INTEGER,
-	mode VARCHAR(200),
+	virtual_link VARCHAR(200),
 	location VARCHAR(200),
 	room_number INTEGER,
-virtual_link VARCHAR(200),
 	PRIMARY KEY(lid)
 );
 
