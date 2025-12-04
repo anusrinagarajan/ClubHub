@@ -1,0 +1,268 @@
+.individual-event {
+  font-family: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI",
+    Roboto, Arial, sans-serif;
+  margin: 2.5vh 5vw;
+  color: var(--text);
+}
+
+.individual-event-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* LEFT COLUMN */
+
+.individual-event-left {
+  flex: 0 0 440px; /* no grow/shrink, sets base width to 440 */
+}
+
+.event-flyer-card {
+  border-radius: 24px;
+  background: #f9fafb;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  padding: 8px;
+}
+
+.event-flyer-image {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.event-flyer-placeholder {
+  width: 100%;
+  padding-top: 130%;
+  border-radius: 20px;
+  background: #e5e7eb;
+}
+
+/* RIGHT COLUMN */
+
+.individual-event-right {
+  flex: 1;
+  padding-top: 12px;
+}
+
+/* Tags */
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.event-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 11px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+/* Title */
+
+.event-title {
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+/* Club row */
+
+.event-club-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.event-club-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.event-club-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+  overflow: hidden;
+}
+
+.event-club-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-club-initials {
+  letter-spacing: 0.04em;
+}
+
+.event-club-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Learn more */
+
+.learn-more-button {
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.learn-more-button:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+/* Meta rows */
+
+.event-meta {
+  margin-bottom: 20px;
+}
+
+.event-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.event-meta-icon {
+  color: var(--muted);
+}
+
+.event-meta-text {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Description */
+
+.event-description-wrapper {
+  margin-top: 8px;
+}
+
+.event-description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Collapsed description limited by viewport height.
+   Height is passed via --collapsed-height inline style. */
+
+.event-description--collapsed {
+  max-height: var(--collapsed-height);
+  overflow: hidden;
+  position: relative;
+}
+
+.event-description--collapsed::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    var(--bg)
+  );
+}
+
+/* Read more */
+
+.event-read-more-wrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.read-more-button {
+  min-width: 140px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.read-more-button:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 960px) {
+  .individual-event {
+    margin: 2.5vh 5vw;
+  }
+  
+  .individual-event-inner {
+    flex-direction: column;
+  }
+
+  .individual-event-left {
+    flex: 1 1 0; /*grow/shrink as needed, base width flexible*/
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .individual-event {
+    margin: 5vh 0;
+  }
+
+  .event-title {
+    font-size: 22px;
+  }
+
+  .event-club-row {
+    align-items: center;
+  }
+
+  .event-read-more-wrapper {
+    justify-content: center;
+  }
+}

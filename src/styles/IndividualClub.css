@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap");
+
+.individual-club-page {
+  margin: 2.5vh 5vw;
+  font-family: "Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto,
+    Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.individual-club-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.club-header-row {
+  margin-bottom: 16px;
+}
+
+/* MAIN LAYOUT */
+
+.club-main-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Left column */
+
+.club-main-column {
+  flex: 1 1 40%;
+  max-width: 420px;
+}
+
+.club-cover-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  background: #f3f4f6;
+}
+
+.club-cover-image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.club-cover-placeholder {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.club-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.club-title-block {
+  flex: 1;
+}
+
+.club-name {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.club-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.club-tag {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 500;
+}
+
+/* Favorites */
+
+.favorites-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  background: #111827;
+  color: #f9fafb;
+  font-size: 0.75rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.favorites-button:hover {
+  opacity: 0.92;
+}
+
+.favorites-icon {
+  fill: #ffffff00;
+}
+
+/* Socials */
+
+.club-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.club-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-decoration: none;
+  background: #f9fafb;
+}
+
+.club-social-link:hover {
+  background: #f3f4f6;
+}
+
+.club-social-label {
+  font-weight: 500;
+}
+
+.club-social-external {
+  opacity: 0.7;
+}
+
+/* Description + Read more */
+
+.club-description-wrapper {
+  position: relative;
+}
+
+.club-description {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-height: 6.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.club-description::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+}
+
+.club-description.expanded {
+  max-height: none;
+}
+
+.club-description.expanded::after {
+  display: none;
+}
+
+.read-more-button {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  color: #f9fafb;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.read-more-button:hover {
+  opacity: 0.95;
+}
+
+/* Right column – events */
+
+.club-events-column {
+  flex: 1 1 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.club-events-header {
+  margin-bottom: 16px;
+}
+
+.club-events-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.club-events-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Events list */
+
+.club-events-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.no-events {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .club-main-layout {
+    flex-direction: column;
+  }
+
+  .club-main-column,
+  .club-events-column {
+    max-width: 100%;
+  }
+
+  .club-events-list {
+    flex-direction: column;
+  }
+}

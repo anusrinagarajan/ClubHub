@@ -1,0 +1,127 @@
+[
+  {
+    "id": 1,
+    "club_name": "Society of Women Engineers",
+    "description": "Empowering women to pursue careers in engineering.",
+    "categories": ["STEM", "Women", "Engineering"],
+    "socials": [
+      { "Discord": "https://www.google.com/" },
+      { "Youtube": "https://www.google.com/" },
+      { "Instagram": "https://www.google.com/" },
+      { "TikTok": "https://www.google.com/" },
+      { "TikTok": "https://www.google.com/" },
+      { "TikTok": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 2,
+    "club_name": "Computer Science Society",
+    "description": "A community for students passionate about computer science, programming, and technology. Join us for hackathons, workshops, and networking events with industry professionals.",
+    "categories": ["STEM", "Technology"],
+    "socials": [
+      { "Youtube": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 3,
+    "club_name": "Ethics in Technology Club",
+    "description": "Exploring the intersection of technology and ethics. We discuss AI ethics, data privacy, digital rights, and the social impact of emerging technologies.",
+    "categories": ["Ethics", "STEM", "Philosophy"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 4,
+    "club_name": "Biomedical Engineering Society",
+    "description": "Bringing together students interested in biomedical engineering, healthcare innovation, and medical device development. Hands-on projects and guest speakers from the industry.",
+    "categories": ["STEM", "Engineering", "Healthcare"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": null
+  },
+  {
+    "id": 5,
+    "club_name": "Women in Business",
+    "description": "Empowering women to succeed in business through mentorship, professional development, and networking opportunities with successful female executives.",
+    "categories": ["Women", "Business", "Leadership"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 6,
+    "club_name": "Data Science Club",
+    "description": "Learn data analysis, machine learning, and statistical modeling. Work on real-world projects and compete in data science competitions.",
+    "categories": ["STEM", "Technology", "Analytics"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 7,
+    "club_name": "Philosophy & Ethics Society",
+    "description": "Engage in thoughtful discussions about moral philosophy, ethics, and the big questions of human existence. Weekly seminars and debates.",
+    "categories": ["Ethics", "Philosophy", "Humanities"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 8,
+    "club_name": "Robotics Club",
+    "description": "Build, program, and compete with robots! Perfect for students interested in mechanical engineering, electrical engineering, and computer science.",
+    "categories": ["STEM", "Engineering", "Technology"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": null
+  },
+  {
+    "id": 9,
+    "club_name": "Women in STEM",
+    "description": "Supporting and celebrating women in science, technology, engineering, and mathematics through community building, mentorship, and advocacy.",
+    "categories": ["Women", "STEM", "Leadership"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": null
+  },
+  {
+    "id": 10,
+    "club_name": "Environmental Ethics Alliance",
+    "description": "Addressing environmental challenges through an ethical lens. Discuss sustainability, climate justice, and our responsibilities to future generations.",
+    "categories": ["Ethics", "Environment", "Activism"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 11,
+    "club_name": "Mathematics Society",
+    "description": "For math enthusiasts! Explore advanced topics, participate in math competitions, and attend talks by renowned mathematicians.",
+    "categories": ["STEM", "Mathematics"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1170"
+  },
+  {
+    "id": 12,
+    "club_name": "Women Leaders Forum",
+    "description": "Developing the next generation of women leaders through workshops, speaker series, and leadership training programs.",
+    "categories": ["Women", "Leadership", "Business"],
+    "socials": [
+      { "instagram": "https://www.google.com/" }
+    ],
+    "image": null
+  }
+]
