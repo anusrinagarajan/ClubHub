@@ -3,7 +3,7 @@
 ## Detailed Setup Instructions
 1. Clone the repository:
    ```bash
-   git clone [<repo-link>](https://github.com/anusrinagarajan/ClubHub.git)
+   git clone https://github.com/anusrinagarajan/ClubHub.git
 2. Go to backend -> db.js -> change password field to your MYSQL password
 ### Backend Setup 
 1. Open a terminal window
