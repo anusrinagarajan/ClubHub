@@ -13,7 +13,7 @@ function ManageClubCard({ club }) {
   return (
     <div className="club-card">
       <div className="club-card-image-placeholder">
-        <Link to={`/clubs/${club.id}`} className="invis-link">
+        <Link to={`/manage-clubs/${club.id}/edit`} className="invis-link">
           <img src={club.image} />
         </Link>
       </div>
@@ -30,11 +30,11 @@ function ManageClubCard({ club }) {
           </Link>
         </div>
 
-        <Link to={`/clubs/${club.id}`} className="invis-link">
+        <Link to={`/manage-clubs/${club.id}/edit`} className="invis-link">
           <h3 className="club-card-title">{club.club_name}</h3>
         </Link>
 
-        <Link to={`/clubs/${club.id}`} className="invis-link">
+        <Link to={`/manage-clubs/${club.id}/edit`} className="invis-link">
           <p className="club-card-description">{club.description}</p>
         </Link>
 
@@ -106,9 +106,6 @@ function ManageClubs() {
           )}
         </div>
       </div>
-
-      {/* Keep layout consistent with Clubs.jsx */}
-      <div className="favorited-sidebar" />
     </div>
   );
 }

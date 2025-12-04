@@ -30,7 +30,7 @@ function Layout() {
     window.location.href = "/login";
   }
   
-  const accountTypeString = loggedInUser?.is_Admin ? "Admin" : loggedInUser?.is_Club_Officer ? "Club Officer" : null;
+  const accountTypeString = loggedInUser?.is_Admin ? "Admin: " : loggedInUser?.is_Club_Officer ? "Club Officer: " : "";
 
   // Close log out popout - note: cannot do setShowLogout(false), bc would call immediately and pass undefined
   useClickOutside(popupRef, () => setShowLogout(false))
@@ -56,13 +56,18 @@ function Layout() {
             </button>
           </Link>
 
-          {loggedInUser && (loggedInUser.is_Club_Officer || loggedInUser.is_Admin) && 
-          <Link to="/manage-clubs" className="invis-link">
+          {(loggedInUser && (loggedInUser.is_Club_Officer || loggedInUser.is_Admin)) ? 
+          (<Link to="/manage-clubs" className="invis-link">
             <button className="nav-item">
               <Pen className="nav-icon pen" />
-              <span>{accountTypeString}: Clubs</span>
+              <span>{accountTypeString}Clubs</span>
             </button>
-          </Link>
+          </Link>)
+          :
+          (
+          <>
+          </>
+          )
           }
 
         </nav>
@@ -74,7 +79,7 @@ function Layout() {
           <button className="icon-btn" onClick={() => setIsSidebarOpen(v => !v)}>
             <Menu />
           </button>
-          <Link to="/events" className="brand invis-link"><div>ClubNav</div></Link>
+          <Link to="/events" className="brand invis-link"><div>SJSU ClubNav</div></Link>
         </div>
 
         {/* User info */}
@@ -87,7 +92,7 @@ function Layout() {
               </div>
 
               <span className="user-name clickable" onClick={() => setShowLogout(v => !v)}>
-                Welcome, {accountTypeString + ": " + fullName}
+                Welcome, {accountTypeString + fullName}
               </span>
               </>
             )

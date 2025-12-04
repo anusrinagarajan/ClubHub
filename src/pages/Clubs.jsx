@@ -70,7 +70,9 @@ function FavoriteClubItem({ club, onRemove }) {
   return (
     <div className="favorite-club-item">
       <Link to={`${club.id}`} key={club.id} className="invis-link">
-        <div className="favorite-club-placeholder" />
+        <div className="favorite-club-placeholder" >
+          {club.image && <img src={club.image} className="favorite-club-img"/>}
+        </div>
       </Link>
       <Link to={`${club.id + "1"}`} key={club.id + "1"} className="invis-link">
         <p className="favorite-club-name">{club.club_name}</p>
