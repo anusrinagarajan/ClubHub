@@ -1,25 +1,25 @@
 # ClubNav
 ## Overview
-### **Prerequisites**
+## Detailed Setup Instructions
 1. Clone the repository:
    ```bash
    git clone <repo-link>
 2. Go to backend -> db.js -> change password field to your MYSQL password
-## Detailed Setup Instructions
-<b>Backend</b>
-1. Run the following to start the MySQLserver
+### Backend Setup 
+1. Open a terminal window
+2. Run the following to start the MySQLserver
 
-Windows: Replace [] with the path to your mysql.exe
-```bash
-"[C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe]" -u root -p
-```
+   Windows: Replace [] with the path to your mysql.exe
+   ```bash
+   "[C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe]" -u root -p
+   ```
 
-MacOS: 
-  ```bash
-  mysql -u root -p
-  ```
+   MacOS: 
+     ```bash
+     mysql -u root -p
+     ```
   
-2. Install dependencies
+3. Install dependencies
 ```bash
 npm install express cors mysql2
 ```
@@ -29,8 +29,9 @@ npm install express cors mysql2
 cd backend
 node server.js
 ```
-<b>Frontend</b>
-1. Install dependencies
+### Frontend Setup
+1. Open a different terminal window for the frontend setup (leave the other terminal window with the backend setup running)
+2. Install dependencies
 ```bash
 npm install
 ```
