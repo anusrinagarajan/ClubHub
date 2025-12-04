@@ -10,7 +10,7 @@ export const pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "Goldsilver14",
-  // don't set database yet – we create it first if does not exist
+  // don't set database yet – we create it first if not exists
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -20,7 +20,7 @@ export const pool = mysql.createPool({
 export async function initDb() {
   let conn;
   try {
-    
+
     conn = await pool.getConnection();
     console.log("Connected to MySQL server");
 
@@ -28,7 +28,7 @@ export async function initDb() {
     await conn.query("CREATE DATABASE IF NOT EXISTS clubsdb");
     console.log("Database 'clubsdb' is ready");
 
-    // Switch to clubsdb database for this connection
+    // Switch to clubsdb database
     await conn.changeUser({ database: "clubsdb" });
     console.log("Now using database 'clubsdb'");
 
@@ -37,10 +37,19 @@ export async function initDb() {
     await conn.query(createTableSQL);
     console.log("createTables.sql executed successfully!");
 
-    // Execute INSERT INTO statements
+    // Execute INSERT statements
     const insertDataSQL = fs.readFileSync("./insertData.sql", "utf8");
     await conn.query(insertDataSQL);
     console.log("insertData.sql executed successfully!");
+
+    // Execute INDEX statements
+    if (fs.existsSync("./indexes.sql")) {
+      const indexSQL = fs.readFileSync("./indexes.sql", "utf8");
+      await conn.query(indexSQL);
+      console.log("indexes.sql executed successfully!");
+    } else {
+      console.log("No indexes.sql file found — skipping index creation.");
+    }
 
   } catch (err) {
     console.error("DB init error:", err);
