@@ -1,40 +1,45 @@
 # ClubNav
 ## Overview
-## Detailed Setup Instructions
+### **Prerequisites**
 1. Clone the repository:
    ```bash
    git clone <repo-link>
 2. Go to backend -> db.js -> change password field to your MYSQL password
+## Detailed Setup Instructions
+<b>Backend</b>
+1. Run the following to start the MySQLserver
 
-<b>Frontend</b>
-3. Install dependencies
+Windows: Replace [] with the path to your mysql.exe
 ```bash
-npm install
+"[C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe]" -u root -p
 ```
-4. Run application
-   ```bash
-npm run dev
-```
-<b>Backend to start the MySQL server</b>
-5. Open a new terminal window for backend (Leave the frontend terminal window running)
-6. MacOS: 
+
+MacOS: 
   ```bash
   mysql -u root -p
   ```
-Windows: Replace [] with path to your mysql.exe
-   ```bash
-   "[C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe]" -u root -p
-   ```
-7. Install dependencies
-   ```bash
-   npm install express cors mysql2
-   ```
-8. Run express server
+  
+2. Install dependencies
+```bash
+npm install express cors mysql2
+```
+
+3. Run express server
 ```bash
 cd backend
 node server.js
 ```
-9. Copy the localhost link from frontend and paste into browser 
+<b>Frontend</b>
+1. Install dependencies
+```bash
+npm install
+```
+
+2. Run application
+```bash
+npm run dev
+```
+3. Copy the localhost link and paste into browser
 
 ## Existing accounts:
 Club Officer Account
