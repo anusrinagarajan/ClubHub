@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { BackButton } from "../components/BackButton";
 import MultiSelect from "../components/MultipleSelect.jsx";
 import useClickOutside from "../utilityfunctions/useClickOutside";
+import { Plus } from "lucide-react";
 
 import "../styles/IndividualClub.css";
 
@@ -73,6 +74,7 @@ function EditingIndividualClub() {
           event_tags: Array.isArray(ev.event_tags)
             ? ev.event_tags.filter(Boolean)
             : [],
+          isNew: false,
         }));
 
         setEventsForm(cleanedEvents);
@@ -169,31 +171,72 @@ function EditingIndividualClub() {
     const ev = eventsForm.find((e) => e.eid === eid);
     if (!ev) return;
 
+    const isNew = ev.isNew;
+
     try {
-      const res = await fetch(`http://localhost:5174/api/events/${eid}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          event_name: ev.event_name,
-          description: ev.description,
-          start_time: ev.start_time,
-          end_time: ev.end_time,
-          flyer_url: ev.flyer_url,
-          location: ev.location,
-          event_tags: ev.event_tags || [],
-        }),
-      });
+      if (isNew) {
+        // CREATE new event (POST)
+        const res = await fetch("http://localhost:5174/api/events", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cid,
+            event_name: ev.event_name,
+            description: ev.description,
+            start_time: ev.start_time,
+            end_time: ev.end_time,
+            flyer_url: ev.flyer_url,
+            location: ev.location,
+            event_tags: ev.event_tags || [],
+          }),
+        });
 
-      const text = await res.text();
-      console.log("Save event response:", res.status, text);
+        if (!res.ok) {
+          const text = await res.text();
+          console.log("Create event error response:", res.status, text);
+          throw new Error(text || "Failed to create event");
+        }
 
-      if (!res.ok) {
-        throw new Error(text || "Failed to save event");
+        const created = await res.json();
+        console.log("Create event response:", created);
+
+        // replace temp event with real one from backend
+        setEventsForm((prev) =>
+          prev.map((e) =>
+            e.eid === eid ? { ...created, event_tags: (created.event_tags || []).filter(Boolean), isNew: false } : e
+          )
+        );
+
+        alert(`Event ${created.eid} created successfully`);
+      } else {
+        // UPDATE existing event (PUT)
+        const res = await fetch(`http://localhost:5174/api/events/${eid}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            event_name: ev.event_name,
+            description: ev.description,
+            start_time: ev.start_time,
+            end_time: ev.end_time,
+            flyer_url: ev.flyer_url,
+            location: ev.location,
+            event_tags: ev.event_tags || [],
+          }),
+        });
+
+        const text = await res.text();
+        console.log("Save event response:", res.status, text);
+
+        if (!res.ok) {
+          throw new Error(text || "Failed to save event");
+        }
+
+        alert(`Event ${eid} saved successfully`);
       }
-
-      alert(`Event ${eid} saved successfully`);
     } catch (err) {
       console.error("Error saving event:", err);
       alert("Error saving event. Check console for details.");
@@ -201,6 +244,12 @@ function EditingIndividualClub() {
   };
 
   const handleDeleteEvent = async (eid) => {
+    // if it's a brand-new unsaved event, just remove it from state
+    if (String(eid).startsWith("new-")) {
+      setEventsForm((prev) => prev.filter((ev) => ev.eid !== eid));
+      return;
+    }
+
     const confirmDelete = window.confirm(
       `Are you sure you want to delete event ${eid}?`
     );
@@ -238,6 +287,26 @@ function EditingIndividualClub() {
           : ev
       )
     );
+  };
+
+  const handleAddEvent = () => {
+    const tempId = `new-${Date.now()}`;
+
+    setEventsForm((prev) => [
+      ...prev,
+      {
+        eid: tempId,
+        cid: parseInt(cid, 10),
+        event_name: "",
+        description: "",
+        start_time: "",
+        end_time: "",
+        flyer_url: "",
+        location: "",
+        event_tags: [],
+        isNew: true,
+      },
+    ]);
   };
 
   // ----- loading / error -----
@@ -351,11 +420,40 @@ function EditingIndividualClub() {
 
           {/* RIGHT COLUMN – EDIT EVENTS */}
           <section className="club-events-column">
-            <header className="club-events-header">
-              <h2 className="club-events-title">Upcoming Events</h2>
-              <p className="club-events-subtitle">
-                Edit each event and save individually
-              </p>
+            <header
+              className="club-events-header"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <h2 className="club-events-title">Upcoming Events</h2>
+                <p className="club-events-subtitle">
+                  Edit each event and save individually
+                </p>
+              </div>
+
+              {/* + button for creating a new event */}
+              <button
+                type="button"
+                onClick={handleAddEvent}
+                style={{
+                  borderRadius: "999px",
+                  width: 32,
+                  height: 32,
+                  border: "1px solid #ddd",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  background: "#ffffff",
+                }}
+                aria-label="Create new event"
+              >
+                <Plus size={18} />
+              </button>
             </header>
 
             <div className="club-events-list">
@@ -386,7 +484,11 @@ function EditingIndividualClub() {
                     </div>
 
                     <p style={{ fontWeight: 600 }}>
-                      Event ID: {event.eid} (cid: {event.cid})
+                      Event ID:{" "}
+                      {String(event.eid).startsWith("new-")
+                        ? "(new)"
+                        : event.eid}{" "}
+                      (cid: {event.cid})
                     </p>
 
                     <div style={{ marginBottom: 8 }}>
@@ -502,14 +604,14 @@ function EditingIndividualClub() {
                         type="button"
                         onClick={() => handleSaveEvent(event.eid)}
                       >
-                        Save Event
+                        {event.isNew ? "Create Event" : "Save Event"}
                       </button>
                       <button
                         type="button"
                         onClick={() => handleDeleteEvent(event.eid)}
                         style={{ backgroundColor: "#fee2e2" }}
                       >
-                        Delete Event
+                        {event.isNew ? "Discard" : "Delete Event"}
                       </button>
                     </div>
                   </div>

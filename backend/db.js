@@ -9,7 +9,7 @@ const DB_NAME = "clubsdb";
 export const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "Goldsilver14",
   // don't set database yet – we create it first if does not exist
   waitForConnections: true,
   connectionLimit: 10,
