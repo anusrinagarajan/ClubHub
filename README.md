@@ -10,7 +10,9 @@
 - Yuwen - Tuesday, 12/02/25: Connected sign up + login to backend, added route mounting for readability
 - Simi  - Wednesday, 12/03/25: Improved project startup documentation with detailed setup frontend/backend steps for MacOS users.
 - Anusri - Tuesday, 12/02/25: Admin & Club Officer initial views of ManageClubs.jsx.
-- Anusri - Wednesday, 12/03/25: Admin & Club Officer functionalities and views for clubs and events. 
+- Anusri - Wednesday, 12/03/25: Admin & Club Officer functionalities and views for clubs and events.
+- Simi - Wednesday, 12/03/25: Completed Indexing.
+- Yuwen - Wednesday, 12/04/25: Connected favorites to backend on Clubs and Individual Club page.
 ### **Prerequisites**
 1. Clone the repository:
    ```bash
