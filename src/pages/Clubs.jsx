@@ -10,6 +10,7 @@ import svgPaths from "../imports/svg-s8131oafzg";
 
 import "../styles/Clubs.css";
 import useClickOutside from "../utilityfunctions/useClickOutside"
+import useDbToggleFavorite from "../utilityfunctions/useDbToggleFavorite"
 
 function StarIcon({ filled, onClick }) {
   return (
@@ -71,7 +72,7 @@ function FavoriteClubItem({ club, onRemove }) {
       <Link to={`${club.id}`} key={club.id} className="invis-link">
         <div className="favorite-club-placeholder" />
       </Link>
-      <Link to={`${club.id}`} key={club.id} className="invis-link">
+      <Link to={`${club.id + "1"}`} key={club.id + "1"} className="invis-link">
         <p className="favorite-club-name">{club.club_name}</p>
       </Link>
       <button className="favorite-remove-btn" onClick={() => onRemove(club.id)}>
@@ -88,14 +89,22 @@ function Clubs() {
   const [showCategoryPopup, setShowCategoryPopup] = useState(false);
   const [clubsData, setClubsData] = useState([]);
 
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
   // Fetch from backend
   useEffect(() => {
     const loadClubs = async () => {
       try {
-        const res = await fetch("http://localhost:5174/api/clubs");
+        var fetchString = `http://localhost:5174/api/clubs`;
+        
+        if (loggedInUser) {
+          fetchString += `?uid=${loggedInUser.uid}`;
+        }
+
+        const res = await fetch(fetchString);
         const data = await res.json();
-        console.log("Loaded clubs:", data);
-        setClubsData(data.map((club) => ({ ...club, favorited: false })));
+        // console.log("Loaded clubs:", data);
+        setClubsData(data);
       } catch (err) {
         console.error("Error fetching events:", err);
       }
@@ -122,21 +131,32 @@ function Clubs() {
   }, [clubsData]);
 
   // Toggle favorite status
-  const toggleFavorite = (clubId) => {
-    setClubsData((prev) =>
-      prev.map((club) =>
-        club.id === clubId ? { ...club, favorited: !club.favorited } : club
-      )
-    );
+  const toggleFavorite = async (clubId) => {
+    if(loggedInUser) {
+      const club = clubsData.find(club => club.id === clubId)
+      const success = useDbToggleFavorite(clubId, loggedInUser.uid, club.favorited);
+      if(success) {
+        // console.log("Favorite db updated successfully: ")
+        setClubsData((prev) =>
+          prev.map((club) =>
+            club.id === clubId ? { ...club, favorited: !club.favorited } : club
+          )
+        );
+      }
+      else {
+        console.log("Favorite db update failed - UI not updated");
+      }
+    }
+    // If not logged in - navigate to login page
+    else {
+      window.location.href = "/login";
+      // console.log("Not logged in - redirecting to login")
+    }
   };
 
   // Remove from favorites
   const removeFavorite = (clubId) => {
-    setClubsData((prev) =>
-      prev.map((club) =>
-        club.id === clubId ? { ...club, favorited: false } : club
-      )
-    );
+    toggleFavorite(clubId);
   };
 
   // Toggle category filter

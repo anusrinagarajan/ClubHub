@@ -46,7 +46,7 @@ function Login() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({"usernameOrEmail" : usernameOrEmail})
-      })
+      });
       console.log(usernameOrEmail);
       const data = await result.json();
       if (data.length === 0) {

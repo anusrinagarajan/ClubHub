@@ -94,21 +94,23 @@
   align-items: center;
   gap: 6px;
   border-radius: 999px;
-  border: 1px solid var(--border);
   padding: 6px 12px;
-  background: #111827;
-  color: #f9fafb;
   font-size: 0.75rem;
   cursor: pointer;
   box-shadow: var(--shadow);
+  background: #111827;
+
+  color: white;
 }
 
 .favorites-button:hover {
   opacity: 0.92;
 }
 
-.favorites-icon {
-  fill: #ffffff00;
+.favorites-icon-favorited {
+  fill: #d47f7f;
+  color: #d47f7f;
+  background: rgb(0, 0, 0);
 }
 
 /* Socials */

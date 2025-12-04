@@ -44,10 +44,10 @@ INSERT IGNORE INTO Socials (platform, cid, link) VALUES
 ('Discord', 2, 'https://www.google.com/'),
 ('Discord', 3, 'https://www.google.com/');
 
-INSERT IGNORE INTO User (first_name, last_name, college_year, email, username, password, is_Club_Officer, is_Admin) VALUES
-('First', 'Last', 3, 'first.last@sjsu.edu', 'User', 'pw', FALSE, FALSE),
-('Jane', 'Doe', 3, 'jane.doe@sjsu.edu', 'janed', 'pw', TRUE, FALSE),
-('John', 'Smith', 2, 'john.smith@sjsu.edu', 'johns', 'pw', FALSE, TRUE);
+INSERT IGNORE INTO User (uid, first_name, last_name, college_year, email, username, password, is_Club_Officer, is_Admin) VALUES
+(1, 'First', 'Last', 3, 'first.last@sjsu.edu', 'User', 'pw', FALSE, FALSE),
+(2, 'Jane', 'Doe', 3, 'jane.doe@sjsu.edu', 'janed', 'pw', TRUE, FALSE),
+(3, 'John', 'Smith', 2, 'john.smith@sjsu.edu', 'johns', 'pw', FALSE, TRUE);
 
 INSERT IGNORE INTO Favorite (cid, uid) VALUES
 (1, 2),

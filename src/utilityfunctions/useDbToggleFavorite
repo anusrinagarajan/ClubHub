@@ -1,0 +1,25 @@
+async function useDbToggleFavorite (clubId, uid, favorited) {
+    var fetchString = ``;
+    if(favorited) {
+        console.log("removing from favorite")
+        fetchString = `http://localhost:5174/api/clubs/remove-favorite`;
+    }
+    else {
+        console.log("default: adding to favorite")
+        //club data fetching may have failed
+        fetchString = `http://localhost:5174/api/clubs/add-favorite`;
+    }
+
+    const result = await fetch(fetchString, {
+        method: `POST`,
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"cid": clubId, "uid": uid})
+    });
+
+    return result.status === 201;
+}
+
+export default useDbToggleFavorite;   
+

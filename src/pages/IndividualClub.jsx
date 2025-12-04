@@ -14,9 +14,8 @@ import {
 } from "lucide-react";
 
 import "../styles/IndividualClub.css";
-function addClubToFavorites(club) {
-  // TODO: implement favorites logic
-}
+
+import useDbToggleFavorite from "../utilityfunctions/useDbToggleFavorite"
 
 function IndividualClub() {
   const { cid } = useParams();
@@ -24,15 +23,47 @@ function IndividualClub() {
   const [clubEvents, setClubEvents] = useState([]);
   // const clubEvents = getEventsByClub(eventsData, cid);
 
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  // Toggle favorite status
+  function toggleFavorite(club) {
+    if(loggedInUser) {
+      const success = useDbToggleFavorite(club.id, loggedInUser.uid, club.favorited);
+      if(success) {
+        // console.log("Favorite db updated successfully: ")
+        setClub((prev) =>
+          ({ ...prev, favorited: !club.favorited })
+        );
+      }
+      else {
+        console.log("Favorite db update failed - UI not updated");
+      }
+    }
+    // If not logged in - navigate to login page
+    else {
+      window.location.href = "/login";
+      // console.log("Not logged in - redirecting to login")
+    }
+  }
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+
   // Fetch from backend
   useEffect(() => {
     const loadData = async () => {
+      // Fetch individual club data
       try {
-        const res = await fetch(`http://localhost:5174/api/clubs?cid=${cid}`);
+        var fetchString = `http://localhost:5174/api/clubs?cid=${cid}`;
+
+        if (loggedInUser) {
+          fetchString += `&uid=${loggedInUser.uid}`;
+          console.log("user is logged in, added uid to fetch")
+        }
+
+        const res = await fetch(fetchString);
         const data = await res.json();
         console.log("Loaded club:", data);
         setClub(data[0]);
@@ -40,6 +71,7 @@ function IndividualClub() {
         console.error("Error fetching club data:", err);
       }
 
+      // Fetch all event data - for this club
       try {
         const res = await fetch(`http://localhost:5174/api/events?cid=${cid}`);
         const data = await res.json();
@@ -103,10 +135,10 @@ function IndividualClub() {
               <button
                 type="button"
                 className="favorites-button"
-                onClick={() => addClubToFavorites(club)}
+                onClick={() => toggleFavorite(club)}
               >
-                <span>Add to Favorites</span>
-                <Heart size={16} className="favorites-icon" />
+                <span>{club.favorited ? "Remove Favorite" : "Add to Favorites"}</span>
+                <Heart size={16} className={"favorites-icon" + (club.favorited ? "-favorited" : "")} />
               </button>
             </div>
 

@@ -17,8 +17,6 @@ function Signup() {
   const [emailError, setEmailError] = useState("");
   const [yearError, setYearError] = useState("");
 
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-
   // Helper: check if username/email already exists
   const checkExists = async ({ username, email }) => {
     try {
