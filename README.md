@@ -63,9 +63,11 @@ Username: johns
 Password: pw
 ```
 ## Division of Work
-Smriti - Front-end interface, Backend, Indexing, Validation 
-Yuwen - ER Diagram, Schema, SQL Implementation, Front-end interface, Backend, Normalization 
-Anusri - Schema, SQL Implementation, Front-end interface, Backend, Normalization
+Smriti Jha - Front-end interface, Authentication, Backend, Indexing, Validation 
+
+Yuwen Zhang - ER Diagram, Schema, SQL Implementation, Front-end interface, Backend, Normalization 
+
+Anusri Nagarajan - Schema, SQL Implementation, Front-end interface, Backend, Normalization
 
 ## Technology Stack
 Programming languages: JavaScript, TypeScript, HTML, CSS
