@@ -27,7 +27,7 @@ INSERT IGNORE INTO Club_Event (eid, lid, flyer_url, description, start_time, end
 (5, 10, 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1170',
  'Hands on intro to a game engine for beginners', '2025-03-05 18:00:00', '2025-03-05 20:00:00', 'Intro to Game Engine Workshop'),
 -- Responsible Computing Club (cid 3)
-(6, 3, 'https://images.unsplash.com/photo-1526378722484-4aa1f64f3e52?auto=format&fit=crop&w=1170',
+(6, 3, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1170',
  'Panel discussion on ethics in AI and tech policy', '2025-03-10 16:00:00', '2025-03-10 18:00:00', 'Ethics in AI Panel'),
 -- Society of Women Engineers (cid 4)
 (7, 3, 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1170',
@@ -42,7 +42,7 @@ INSERT IGNORE INTO Club_Event (eid, lid, flyer_url, description, start_time, end
 -- Computer Science Club (cid 6)
 (11, 1, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1170',
  'Lightning talks on cool CS side projects', '2025-02-19 17:00:00', '2025-02-19 19:00:00', 'Project Showcase Night'),
-(12, 10, 'https://images.unsplash.com/photo-1521737604893-5e8e2040a52e?auto=format&fit=crop&w=1170',
+(12, 10, 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1170',
  'Introduction to Git, GitHub, and collaboration workflows', '2025-03-24 18:00:00', '2025-03-24 20:00:00', 'Git and GitHub Workshop'),
 -- Film Production Society (cid 7)
 (13, 7, 'https://images.unsplash.com/photo-1516031190212-da133013de50?auto=format&fit=crop&w=1170',
@@ -97,7 +97,7 @@ INSERT IGNORE INTO Club_Event (eid, lid, flyer_url, description, start_time, end
 -- HIKE Club (cid 17)
 (33, 9, 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1170',
  'Easy morning hike on a local trail', '2025-02-23 08:00:00', '2025-02-23 12:00:00', 'Local Trail Day Hike'),
-(34, 9, 'https://images.unsplash.com/photo-1500534314211-0a24cd03f2c0?auto=format&fit=crop&w=1170',
+(34, 9, 'https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&w=1170',
  'Afternoon hike and picnic with the club', '2025-03-30 12:00:00', '2025-03-30 16:00:00', 'Hike and Picnic Social');
 
 -- EVENT TAGS
@@ -190,7 +190,7 @@ INSERT IGNORE INTO Club (cid, club_name, description, image) VALUES
  'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1170'),
 (3, 'Responsible Computing Club',
  'Welcoming students from all majors interested in Responsible AI. Partnered with Mozilla, Firefox, and CIRCLE.',
- 'https://images.unsplash.com/photo-1526378722484-4aa1f64f3e52?auto=format&fit=crop&w=1170'),
+ 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1170'),
 (4, 'Society of Women Engineers',
  'Empower women and allies to achieve their fullest potentials as engineers and leaders',
  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1170'),
