@@ -62,6 +62,20 @@ Admin Account
 Username: johns
 Password: pw
 ```
+
+## Testing Key Features 
+Email requires @sjsu.edu
+
+Year must be integers 1-4
+
+Login/sign up input fields are required
+
+Only Admin can assign categories to clubs
+
+You (SJSU Student) can only create a user account. You cannot create a Club Officer or Admin account, but you can test the different functionalities of these accounts using the preassigned credentials.
+
+If you favorite a club, it appears in the favorited clubs card. 
+
 ## Division of Work
 Smriti Jha - Front-end interface, Authentication, Backend, Indexing, Validation 
 
