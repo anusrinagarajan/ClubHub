@@ -66,15 +66,16 @@ Password: pw
 ```
 
 ## Testing Key Features 
+
+Login/sign up input fields are required.
+
 Email requires @sjsu.edu
 
-Year must be integers 1-4
-
-Login/sign up input fields are required
-
-Only Admin can assign categories to clubs
+Year must be integers 1-4.
 
 You (SJSU Student) can only create a user account. You cannot create a Club Officer or Admin account, but you can test the different functionalities of these accounts using the preassigned credentials.
+
+Only Admin can assign categories to clubs.
 
 If you favorite a club, it appears in the favorited clubs card. 
 
@@ -86,10 +87,11 @@ Yuwen Zhang - ER Diagram, Schema, SQL Implementation, Front-end interface, Backe
 Anusri Nagarajan - Schema, SQL Implementation, Front-end interface, Backend, Normalization
 
 ## Technology Stack
-Programming languages: JavaScript, TypeScript, HTML, CSS
-Frameworks: 
-Libraries:
-Tools: 
+Programming languages: JavaScript, TypeScript, SQL
+
+Frameworks: React.js, Express.js
+
+Database: MySQL
 
 ## System Architecture Diagram 
 <img width="820" height="344" alt="Screenshot 2025-12-04 at 4 19 02 PM" src="https://github.com/user-attachments/assets/c20a01fd-6f61-4a02-b71f-a5fcdf4a3e7b" />
