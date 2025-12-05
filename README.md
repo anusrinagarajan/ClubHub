@@ -1,5 +1,10 @@
 # ClubNav
 ## Overview
+A centralized platform that connects users to SJSU clubs and the corresponding club events. 
+Users can: create and log into accounts, view clubs, club information, and club events, filter clubs by category, location, and search by name, favorite clubs
+Admins can: create and remove club events, assign tags to club events, assign categories to clubs, update club information and event information
+Club Officers can: create and remove club events for the clubs they manage, assign tags to club events for the clubs they manage, update club event information for the clubs they manage
+
 ## Detailed Setup Instructions
 1. Clone the repository:
    ```bash
@@ -55,9 +60,9 @@ Username: johns
 Password: pw
 ```
 ## Division of Work
-Smriti - Indexing
-Yuwen - Normalization, Front-end interface, ER Diagram
-Anusri - Normalization, Front-end interface, Schema
+Smriti - Front-end interface, Backend, Indexing, Validation 
+Yuwen - ER Diagram, Schema, SQL Implementation, Front-end interface, Backend, Normalization 
+Anusri - Schema, SQL Implementation, Front-end interface, Backend, Normalization
 
 ## Technology Stack
 Programming languages: JavaScript, TypeScript, HTML, CSS
@@ -69,8 +74,8 @@ Tools:
 <img width="820" height="344" alt="Screenshot 2025-12-04 at 4 19 02 PM" src="https://github.com/user-attachments/assets/c20a01fd-6f61-4a02-b71f-a5fcdf4a3e7b" />
 
 ## Documentation
-[Final Project Report Document] (https://docs.google.com/document/d/157LJhj2lRZT_RCylJPwSrP27OL4OFWvBHGSWjuNb7cs/edit?usp=sharing)
-[Final Project Presentation Slides] (https://docs.google.com/presentation/d/1qHG219gJp5ciYqLMaYe7p8E8uy6OPvMHmxXs7SIiQwo/edit?usp=sharing)
+[Final Project Report Document](https://docs.google.com/document/d/157LJhj2lRZT_RCylJPwSrP27OL4OFWvBHGSWjuNb7cs/edit?usp=sharing)
+[Final Project Presentation Slides](https://docs.google.com/presentation/d/1qHG219gJp5ciYqLMaYe7p8E8uy6OPvMHmxXs7SIiQwo/edit?usp=sharing)
 
 ## Acknowledgements
 - lucide-react icons
