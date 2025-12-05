@@ -331,7 +331,7 @@ function Clubs() {
         <div className="favorited-card">
           <h2 className="favorited-title">Favorited Clubs</h2>
           <div className="favorited-list">
-            {favoritedClubs.slice(0, 5).map((club) => (
+            {favoritedClubs.map((club) => (
               <FavoriteClubItem
                 key={club.id}
                 club={club}

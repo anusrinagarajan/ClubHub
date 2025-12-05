@@ -377,10 +377,22 @@
   background-color: #444444;
   border-radius: 25px;
   padding: 45px 42px;
-  min-height: 696px;
+  height: 696px;      /* KEEP SAME HEIGHT */
   box-sizing: border-box;
   position: sticky;
   top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.favorited-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  overflow-y: auto;        /* <-- Scrolls inside */
+  scrollbar-width: none;
+  flex: 1;                 /* <-- Takes remaining height ONLY */
+  padding-right: 4px;      /* Optional: spacing from scrollbar */
 }
 
 .favorited-title {
@@ -388,14 +400,7 @@
   font-size: 24px;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 68px 0;
-}
-
-/* Favorited list */
-.favorited-list {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
+  margin: 0 0 24px 0;         /* maybe slightly smaller since list scrolls */
 }
 
 .favorited-empty {
