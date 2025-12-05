@@ -99,8 +99,8 @@ function Signup() {
       setEmailError("Email is required.");
       return false;
     }
-    if (!trimmed.includes("@") || !trimmed.endsWith(".edu")) {
-      setEmailError("Please use a valid .edu email address.");
+    if (!trimmed.includes("@") || !trimmed.endsWith("@sjsu.edu")) {
+      setEmailError("Please use a valid @sjsu.edu email address.");
       return false;
     }
 
