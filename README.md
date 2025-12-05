@@ -1,9 +1,11 @@
 # ClubNav
 ## Overview
 A centralized platform that connects users to SJSU clubs and the corresponding club events. 
-Users can: create and log into accounts, view clubs, club information, and club events, filter clubs by category, location, and search by name, favorite clubs
-Admins can: create and remove club events, assign tags to club events, assign categories to clubs, update club information and event information
-Club Officers can: create and remove club events for the clubs they manage, assign tags to club events for the clubs they manage, update club event information for the clubs they manage
+Users (Verified Students) can: create and log into accounts; browse clubs, club info, and events; favorite clubs; filter clubs by category or favorites; filter events by tags, location, date; search clubs and club events by name.
+
+Admins can: create and remove club events; assign event tags; assign categories to clubs; update all club and event information.
+
+Club Officers can: create and remove events for their clubs; assign tags to their clubs’ events; update their club information and events.
 
 ## Detailed Setup Instructions
 1. Clone the repository:
