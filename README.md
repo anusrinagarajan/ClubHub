@@ -91,16 +91,16 @@ Tools:
 ## Change Log
 - Yuwen - Sunday, 11/23/25: Added navigation + routing; Created events page
 - Anusri - Thursday, 11/27/25: Created clubs list page (clubsData.json, Clubs.css, Clubs.jsx, imports folder)
-- Simi - Saturday, 11/29/25: Started backend framework (server.js, db.js), established database connection.
+- Smriti - Saturday, 11/29/25: Started backend framework (server.js, db.js), established database connection.
 - Yuwen - Saturday, 11/29/25: Created individual events page + added photos to events, refactored project structure for readability
-- Simi - Sunday, 11/30/25: Created sign up + login pages (authentication, local storage, page ui)
+- Smriti - Sunday, 11/30/25: Created sign up + login pages (authentication, local storage, page ui)
 - Yuwen - Sunday, 11/30/25: Created individual clubs page + added photos to clubs list, connected frontend pages to backend
 - Yuwen - Monday, 12/01/25: Merged auth_pages to main, added input validation to sign up + login fields, added sign in/log out buttons
 - Yuwen - Tuesday, 12/02/25: Connected sign up + login to backend, added route mounting for readability
-- Simi  - Wednesday, 12/03/25: Improved project startup documentation with detailed setup frontend/backend steps for MacOS users.
+- Smriti  - Wednesday, 12/03/25: Improved project startup documentation with detailed setup frontend/backend steps for MacOS users.
 - Anusri - Tuesday, 12/02/25: Admin & Club Officer initial views of ManageClubs.jsx.
 - Anusri - Wednesday, 12/03/25: Admin & Club Officer functionalities and views for clubs and events, functionality to add events, inserted more Clubs, Categories, and Socials in insertData.sql.
-- Simi - Wednesday, 12/03/25: Completed Indexing.
+- Smriti - Wednesday, 12/03/25: Completed Indexing.
 - Anusri - Wednesday, 12/03/25: 
 - Yuwen - Thursday, 12/04/25: Connected favorites to backend on Clubs and Individual Club page.
 ### **Prerequisites**
