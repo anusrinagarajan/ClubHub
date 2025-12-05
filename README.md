@@ -2,11 +2,11 @@
 ## Overview
 A centralized platform that connects users to SJSU clubs and the corresponding club events. 
 
-Users (Verified Students) can: create and log into accounts; browse clubs, club info, and events; favorite clubs; filter clubs by category or favorites; filter events by tags, location, date; search clubs and club events by name.
+Users (verified students) can: Create & log into account (authenticated for SJSU Students only); Browse contents of platform (view clubs, club information, and club events); Filter clubs by category, favorites, & search; Filter club events by categories (event tags), location, search, & order by date/name
 
-Admins can: create and remove club events; assign event tags; assign categories to clubs; update all club and event information.
+Admins can: Has all capabilities of Users; Create & remove club events for only the clubs they manage; Assign tags to club events for only the clubs they manage; Update club information and club events for only the clubs they manage
 
-Club Officers can: create and remove events for their clubs; assign tags to their clubs’ events; update their club information and events.
+Club Officers can: Has all capabilities of Users; Create & remove all club events; Assign tags to all club events; Assign categories to all clubs; Update all club information & event information
 
 ## Detailed Setup Instructions
 1. Clone the repository:
@@ -62,6 +62,20 @@ Admin Account
 Username: johns
 Password: pw
 ```
+
+## Testing Key Features 
+Email requires @sjsu.edu
+
+Year must be integers 1-4
+
+Login/sign up input fields are required
+
+Only Admin can assign categories to clubs
+
+You (SJSU Student) can only create a user account. You cannot create a Club Officer or Admin account, but you can test the different functionalities of these accounts using the preassigned credentials.
+
+If you favorite a club, it appears in the favorited clubs card. 
+
 ## Division of Work
 Smriti Jha - Front-end interface, Authentication, Backend, Indexing, Validation 
 
@@ -80,6 +94,7 @@ Tools:
 
 ## Documentation
 [Final Project Report Document](https://docs.google.com/document/d/157LJhj2lRZT_RCylJPwSrP27OL4OFWvBHGSWjuNb7cs/edit?usp=sharing)
+
 [Final Project Presentation Slides](https://docs.google.com/presentation/d/1qHG219gJp5ciYqLMaYe7p8E8uy6OPvMHmxXs7SIiQwo/edit?usp=sharing)
 
 ## Acknowledgements
