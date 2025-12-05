@@ -26,6 +26,8 @@ Club Officers can: Has all capabilities of Users; Create & remove all club event
      ```bash
      mysql -u root -p
      ```
+
+   (Next, type your password and exit mysql by typing \q).
   
 3. Install dependencies
 ```bash
