@@ -1,6 +1,7 @@
 # ClubNav
 ## Overview
 A centralized platform that connects users to SJSU clubs and the corresponding club events. 
+
 Users (Verified Students) can: create and log into accounts; browse clubs, club info, and events; favorite clubs; filter clubs by category or favorites; filter events by tags, location, date; search clubs and club events by name.
 
 Admins can: create and remove club events; assign event tags; assign categories to clubs; update all club and event information.
