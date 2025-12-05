@@ -54,6 +54,23 @@ Admin Account
 Username: johns
 Password: pw
 ```
+## Division of Work
+Smriti - Indexing
+Yuwen - Normalization, Front-end interface, ER Diagram
+Anusri - Normalization, Front-end interface, Schema
+
+## Technology Stack
+Programming languages: JavaScript, TypeScript, HTML, CSS
+Frameworks: 
+Libraries:
+Tools: 
+
+## System Architecture Diagram 
+<img width="820" height="344" alt="Screenshot 2025-12-04 at 4 19 02 PM" src="https://github.com/user-attachments/assets/c20a01fd-6f61-4a02-b71f-a5fcdf4a3e7b" />
+
+## Documentation
+[Final Project Report Document] (https://docs.google.com/document/d/157LJhj2lRZT_RCylJPwSrP27OL4OFWvBHGSWjuNb7cs/edit?usp=sharing)
+[Final Project Presentation Slides] (https://docs.google.com/presentation/d/1qHG219gJp5ciYqLMaYe7p8E8uy6OPvMHmxXs7SIiQwo/edit?usp=sharing)
 
 ## Acknowledgements
 - lucide-react icons
