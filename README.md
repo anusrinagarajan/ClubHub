@@ -8,6 +8,18 @@ Admins can: Has all capabilities of Users; Create & remove club events for only 
 
 Club Officers can: Has all capabilities of Users; Create & remove all club events; Assign tags to all club events; Assign categories to all clubs; Update all club information & event information
 
+<table>
+  <tr>
+    <td><img width=500 src="https://github.com/user-attachments/assets/8a767910-4509-441c-b682-1b4210475ebc" /></td>
+    <td><img width=500 src="https://github.com/user-attachments/assets/4790f3a4-a771-4357-957b-6560d45b8e85"/></td>
+  </tr>
+  <tr>
+    <td><img width=500 src="https://github.com/user-attachments/assets/a5aed4d4-1a12-45e7-9f30-c4463ae88ae3"/></td>
+    <td><img width=500 src="https://github.com/user-attachments/assets/87bc2625-21f5-4153-8650-17419f315cc4"/></td>
+  </tr>
+</table>
+
+
 ## Detailed Setup Instructions
 1. Clone the repository:
    ```bash
